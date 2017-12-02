@@ -125,6 +125,7 @@ class Cart extends Component{
                                 <div className="row">
                                     <div className="col-md-2 col-md-offset-10 text-right text-center-xs">
                                         <button onClick={this.updateCart.bind(this, null)}
+                                            style={{ padding: 5 }}
                                             className="btn btn--primary"
                                             >Save Updates</button>
                                     </div>

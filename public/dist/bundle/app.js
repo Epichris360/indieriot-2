@@ -7370,6 +7370,56 @@ module.exports = ret;
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.CheckoutItem = exports.CartItem = exports.Error404 = exports.SuccessAlert = exports.WarningAlert = exports.Footer = exports.Item = undefined;
+
+var _Item = __webpack_require__(158);
+
+var _Item2 = _interopRequireDefault(_Item);
+
+var _Footer = __webpack_require__(159);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _WarningAlert = __webpack_require__(160);
+
+var _WarningAlert2 = _interopRequireDefault(_WarningAlert);
+
+var _SuccessAlert = __webpack_require__(161);
+
+var _SuccessAlert2 = _interopRequireDefault(_SuccessAlert);
+
+var _Error = __webpack_require__(162);
+
+var _Error2 = _interopRequireDefault(_Error);
+
+var _CartItem = __webpack_require__(163);
+
+var _CartItem2 = _interopRequireDefault(_CartItem);
+
+var _CheckoutItem = __webpack_require__(164);
+
+var _CheckoutItem2 = _interopRequireDefault(_CheckoutItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Item = _Item2.default;
+exports.Footer = _Footer2.default;
+exports.WarningAlert = _WarningAlert2.default;
+exports.SuccessAlert = _SuccessAlert2.default;
+exports.Error404 = _Error2.default;
+exports.CartItem = _CartItem2.default;
+exports.CheckoutItem = _CheckoutItem2.default;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7426,56 +7476,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.CheckoutItem = exports.CartItem = exports.Error404 = exports.SuccessAlert = exports.WarningAlert = exports.Footer = exports.Item = undefined;
-
-var _Item = __webpack_require__(158);
-
-var _Item2 = _interopRequireDefault(_Item);
-
-var _Footer = __webpack_require__(159);
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _WarningAlert = __webpack_require__(160);
-
-var _WarningAlert2 = _interopRequireDefault(_WarningAlert);
-
-var _SuccessAlert = __webpack_require__(161);
-
-var _SuccessAlert2 = _interopRequireDefault(_SuccessAlert);
-
-var _Error = __webpack_require__(162);
-
-var _Error2 = _interopRequireDefault(_Error);
-
-var _CartItem = __webpack_require__(163);
-
-var _CartItem2 = _interopRequireDefault(_CartItem);
-
-var _CheckoutItem = __webpack_require__(164);
-
-var _CheckoutItem2 = _interopRequireDefault(_CheckoutItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Item = _Item2.default;
-exports.Footer = _Footer2.default;
-exports.WarningAlert = _WarningAlert2.default;
-exports.SuccessAlert = _SuccessAlert2.default;
-exports.Error404 = _Error2.default;
-exports.CartItem = _CartItem2.default;
-exports.CheckoutItem = _CheckoutItem2.default;
 
 /***/ }),
 /* 12 */
@@ -7733,7 +7733,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
@@ -11924,7 +11924,7 @@ var _reactRedux = __webpack_require__(4);
 
 var _containers = __webpack_require__(52);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 var _Home = __webpack_require__(202);
 
@@ -11932,7 +11932,7 @@ var _Home2 = _interopRequireDefault(_Home);
 
 var _reactStripeElements = __webpack_require__(34);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35398,7 +35398,7 @@ var _Nav = __webpack_require__(16);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
@@ -35406,7 +35406,7 @@ var _actions = __webpack_require__(7);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35907,7 +35907,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36104,7 +36104,7 @@ var _Nav = __webpack_require__(16);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
@@ -36112,7 +36112,7 @@ var _actions = __webpack_require__(7);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36514,7 +36514,7 @@ var _Nav = __webpack_require__(16);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 var _reactRedux = __webpack_require__(4);
 
@@ -36757,7 +36757,7 @@ var _actions = __webpack_require__(7);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37220,9 +37220,9 @@ var _actions2 = _interopRequireDefault(_actions);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37973,7 +37973,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 var _utils = __webpack_require__(65);
 
@@ -38975,9 +38975,9 @@ var _actions = __webpack_require__(7);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39184,6 +39184,7 @@ var Cart = function (_Component) {
                                     _react2.default.createElement(
                                         'button',
                                         { onClick: this.updateCart.bind(this, null),
+                                            style: { padding: 5 },
                                             className: 'btn btn--primary'
                                         },
                                         'Save Updates'
@@ -39258,11 +39259,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(11);
+var _presentation = __webpack_require__(10);
 
 var _reactStripeElements = __webpack_require__(34);
 
@@ -39291,7 +39292,7 @@ var Checkout = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).call(this, props));
 
         _this.state = {
-            token: null, stripeStatus: false
+            token: null, stripeStatus: false, message: '', success: false, err: false
         };
         return _this;
     }
@@ -39307,18 +39308,19 @@ var Checkout = function (_Component) {
                 }
             }).then(function (response) {
                 console.log(response);
-                this.setState({ stripeStatus: false });
+                this.setState({ success: true, message: 'The Operation was a Success' });
                 return;
             }).catch(function (error) {
-                this.setState({ stripeStatus: false });
-                console.log(error);
+                //console.log(error)
+                this.setState({ err: true, message: 'There was an Error Please Try Again' });
                 return;
             });
         }
     }, {
         key: 'stripeStatus',
-        value: function stripeStatus() {
-            this.setState({ stripeStatus: true });
+        value: function stripeStatus(status) {
+
+            this.setState({ stripeStatus: status });
         }
     }, {
         key: 'render',
@@ -39424,7 +39426,8 @@ var Checkout = function (_Component) {
                                             null,
                                             _react2.default.createElement(_CheckOutFormStripe2.default, { userName: this.props.user.name,
                                                 status: this.state.stripeStatus,
-                                                stripeStatus: this.stripeStatus.bind(this),
+                                                stripeStatusTrue: this.stripeStatus.bind(this, true),
+                                                stripeStatusFalse: this.stripeStatus.bind(this, false),
                                                 receivedToken: this.receivedToken.bind(this)
                                             })
                                         )
@@ -40198,6 +40201,7 @@ var CheckOutFormStripe = function (_Component) {
                 var token = _ref.token;
 
                 _this2.props.receivedToken(token);
+                _this2.props.stripeStatusFalse;
                 //console.log('Received Stripe token:', token);
                 return;
             }).catch(function (err) {
@@ -40216,10 +40220,12 @@ var CheckOutFormStripe = function (_Component) {
                 { onSubmit: this.handleSubmit.bind(this) },
                 'Card Details',
                 _react2.default.createElement(_reactStripeElements.CardElement, { style: { base: { fontSize: '18px' } } }),
+                /*
+                   this.props.status ? <h3>Processing Payment...</h3> :*/
                 _react2.default.createElement(
                     'button',
                     { style: { marginTop: 18, padding: 5 }, className: 'btn btn--primary',
-                        onClick: this.props.stripeStatus
+                        onClick: this.props.stripeStatusTrue
                     },
                     'Buy Tickets!'
                 )
@@ -41147,7 +41153,9 @@ var _actions = __webpack_require__(7);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _reactRouterDom = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(11);
+
+var _presentation = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41378,79 +41386,6 @@ var Home = function (_Component) {
                     ),
                     _react2.default.createElement(
                         'section',
-                        { id: 'features' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'feature feature-5 boxed boxed--lg boxed--border' },
-                                        _react2.default.createElement('i', { className: 'icon icon-Pantone icon--lg' }),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'feature__body' },
-                                            _react2.default.createElement(
-                                                'h5',
-                                                null,
-                                                'Highly Customizable'
-                                            ),
-                                            _react2.default.createElement(
-                                                'p',
-                                                null,
-                                                'Stack\'s visual style is simple yet distinct. Perfect for your next project whether it be basic marketing site, or multi-page company presence.'
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { href: '#' },
-                                                'Learn More'
-                                            )
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'feature feature--featured feature-5 boxed boxed--lg boxed--border' },
-                                        _react2.default.createElement(
-                                            'span',
-                                            { className: 'label' },
-                                            'Free'
-                                        ),
-                                        _react2.default.createElement('i', { className: 'icon icon-Duplicate-Window icon--lg' }),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'feature__body' },
-                                            _react2.default.createElement(
-                                                'h5',
-                                                null,
-                                                'Page Builder Included'
-                                            ),
-                                            _react2.default.createElement(
-                                                'p',
-                                                null,
-                                                'Construct mockups or production-ready pages in-browser with Variant Page Builder \u2014 Included FREE with every licence purchase.'
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { href: '#' },
-                                                'Learn More'
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'section',
                         { className: 'bg--primary unpad cta cta-2', id: 'video' },
                         _react2.default.createElement(
                             'a',
@@ -41467,83 +41402,14 @@ var Home = function (_Component) {
                                         _react2.default.createElement(
                                             'h2',
                                             null,
-                                            'Build a beautiful site with Stack'
+                                            ' IndieRiot. Indie Just Like You '
                                         )
                                     )
                                 )
                             )
                         )
                     ),
-                    _react2.default.createElement(
-                        'footer',
-                        { className: 'footer-6 unpad--bottom  bg--dark ' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'container' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6 col-md-3' },
-                                    _react2.default.createElement(
-                                        'h6',
-                                        { className: 'type--uppercase' },
-                                        'About Us'
-                                    ),
-                                    _react2.default.createElement(
-                                        'p',
-                                        null,
-                                        'Stack is a robust multipurpose HTML template designed with modularity at the core. Easily combine over 290 interface blocks to create websites for any purpose.'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6 col-md-3' },
-                                    _react2.default.createElement(
-                                        'h6',
-                                        { className: 'type--uppercase' },
-                                        'Recent Updates'
-                                    ),
-                                    _react2.default.createElement('div', { className: 'tweets-feed tweets-feed-2', 'data-feed-name': 'mrareweb', 'data-amount': '2' })
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6 col-md-3' },
-                                    _react2.default.createElement(
-                                        'h6',
-                                        { className: 'type--uppercase' },
-                                        'Instagram'
-                                    ),
-                                    _react2.default.createElement('div', { className: 'instafeed instafeed--gapless', 'data-user-name': 'mediumrarethemes', 'data-amount': '6', 'data-grid': '3' })
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-sm-6 col-md-3' },
-                                    _react2.default.createElement(
-                                        'h6',
-                                        { className: 'type--uppercase' },
-                                        'Newsletter'
-                                    ),
-                                    _react2.default.createElement(
-                                        'form',
-                                        { action: '//mrare.us8.list-manage.com/subscribe/post?u=77142ece814d3cff52058a51f&id=f300c9cce8', 'data-success': 'Thanks for signing up.  Please check your inbox for a confirmation email.', 'data-error': 'Please provide your email address.' },
-                                        _react2.default.createElement('input', { className: 'validate-required validate-email', type: 'text', name: 'EMAIL', placeholder: 'Email Address' }),
-                                        _react2.default.createElement(
-                                            'button',
-                                            { type: 'submit', className: 'btn btn--primary type--uppercase' },
-                                            'Subscribe'
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { style: { position: 'absolute', left: '-5000px' }, 'aria-hidden': 'true' },
-                                            _react2.default.createElement('input', { type: 'text', name: 'b_77142ece814d3cff52058a51f_f300c9cce8', tabIndex: '-1', value: '' })
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
+                    _react2.default.createElement(_presentation.Footer, null)
                 )
             );
         }

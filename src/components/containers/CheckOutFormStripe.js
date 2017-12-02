@@ -12,6 +12,7 @@ class CheckOutFormStripe extends Component{
         this.props.stripe.createToken({name: this.props.userName })
         .then(({token}) => { 
             this.props.receivedToken(token)
+            this.props.stripeStatusFalse
             //console.log('Received Stripe token:', token);
             return
         })
@@ -28,10 +29,12 @@ class CheckOutFormStripe extends Component{
             <form onSubmit={this.handleSubmit.bind(this)}>
                 Card Details
                 <CardElement style={{base: {fontSize: '18px'}}} />
-
-                <button style={{marginTop:18, padding: 5}} className="btn btn--primary" 
-                    onClick={this.props.stripeStatus}
-                >Buy Tickets!</button>
+                {/*
+                    this.props.status ? <h3>Processing Payment...</h3> :*/
+                    <button style={{marginTop:18, padding: 5}} className="btn btn--primary" 
+                        onClick={this.props.stripeStatusTrue}
+                    >Buy Tickets!</button>
+                }
             </form>
         )
     }

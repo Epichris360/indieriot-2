@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link }             from 'react-router-dom'
 import { connect }          from 'react-redux'
-import { CheckoutItem }     from '../presentation'
+import { CheckoutItem, WarningAlert, 
+        SuccessAlert }      from '../presentation'
 import { Elements }         from 'react-stripe-elements'
 import CheckOutFormStripe   from './CheckOutFormStripe'
 import axios                from 'axios'
@@ -10,7 +11,7 @@ class Checkout extends Component{
     constructor(props){
         super(props)
         this.state = {
-            token:null, stripeStatus:false
+            token:null, stripeStatus:false, message:'', success:false, err: false
         }
     }
     receivedToken(token){
@@ -22,18 +23,19 @@ class Checkout extends Component{
             }
         })
         .then(function (response) {
-            console.log(response);
-            this.setState({ stripeStatus: false })
+            console.log(response)
+            this.setState({success: true, message:'The Operation was a Success'})
             return
         })
         .catch(function (error) {
-            this.setState({ stripeStatus: false })
-            console.log(error);
+            //console.log(error)
+            this.setState({err: true, message:'There was an Error Please Try Again'})
             return
         });
     }
-    stripeStatus(){
-        this.setState({ stripeStatus: true })
+    stripeStatus(status){
+
+        this.setState({ stripeStatus: status })
     }
     render(){
         return(
@@ -89,11 +91,12 @@ class Checkout extends Component{
                         {/*<!--end of row-->*/}
                         <div className="row" style={{marginTop:-50}} >
                             <div className="col-sm-12 col-md-8 col-md-offset-2 cart-customer-details">                                
-                                <div className="row">
+                                <div className="row"> 
                                     <Elements>
                                         <CheckOutFormStripe userName={ this.props.user.name } 
                                             status={this.state.stripeStatus}
-                                            stripeStatus={this.stripeStatus.bind(this)}
+                                            stripeStatusTrue={this.stripeStatus.bind(this, true)}
+                                            stripeStatusFalse={this.stripeStatus.bind(this, false)}
                                             receivedToken={this.receivedToken.bind(this)} 
                                         />
                                     </Elements>
