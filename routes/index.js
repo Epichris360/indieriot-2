@@ -32,27 +32,58 @@ router.get('/redirect', function(req, res){
 router.post("/charge-card", function(req, res){
 	const charge = req.body.params.charge
 	const token  = req.body.params.token
+	const cart   = req.body.params.cart
+
+	const newCart = {
+		user_id: cart.user_id,
+		concerts:[],
+		total:0
+	}
 
 	stripe.charges.create({
 	  amount: (charge * 100),
 	  currency: "usd",
 	  description: "Band Tickets and Stuff",
 	  source: token.id,
-	}, function(err, charge) {
+	}, (err, charge) => {
 	  // asynchronously called
 	  if(err){
-		  res.status(500).json({msg: "nope"})
+		  res.status(500).json({
+			  status:500,
+			  message:"There was An Error Please Try Again"
+		  })
 	  }
+
+	  cart.date_processed = new Date()
+	  cart.charge         = charge
+	  //purchased_carts contains carts that have been purchased
+	  turbo.create('purchased_carts',cart)
+	  .then(data => {
+		return
+	  })
+	  .then( () => {
+		  turbo.removeEntity('carts',cart.id)
+		  .then(data => {
+			  return
+		  })
+		  return
+	  })
+	  .then( () => {
+		  turbo.create('carts', newCart)
+		  .then(data => {
+			  console.log('new cart', data)
+			  return
+		  })
+		  return
+	  })
+	  .catch(err => {
+		console.log('err', err)
+		return
+	  })
 	  
-	  //turbo.create('myConcerts',{  })
-	  //create myConcerts to have peoples old carts
-	  //then updated the cart of the user to be empty
-	  //then send the 200 status
-	  //have a paying status bar in checkout
 	  res.status(200).json({
 		  status: 200,
-		  message:"transaction completed",
-		  charge: charge
+		  message:"transaction completed"
 	  })
 
 	})

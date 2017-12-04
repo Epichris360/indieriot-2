@@ -99,6 +99,12 @@ export default {
 		return dispatch => {
 			return dispatch( TurboClient.putWithIdRequest( 'carts', id, params, constants.UPDATE_CART ) )
 		}
+	},
+
+	newCartAfterPurchased: () => {
+		return dispatch => {
+			return dispatch( { type: constants.NEW_CART_AFTER_PURCHASED , data: null } )
+		}
 	}
 	
 } 

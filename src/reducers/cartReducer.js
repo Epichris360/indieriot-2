@@ -19,7 +19,10 @@ export default (state = initialState, action) => {
         case constants.UPDATE_CART:
             return action.data
 
-        case constants.BUY_FROM_CART: 
+        /*case constants.BUY_FROM_CART: 
+            return initialState*/
+
+        case constants.NEW_CART_AFTER_PURCHASED:
             return initialState
  
 		default:

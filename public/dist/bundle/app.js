@@ -811,6 +811,12 @@ exports.default = {
 		return function (dispatch) {
 			return dispatch(_utils.TurboClient.putWithIdRequest('carts', id, params, _constants2.default.UPDATE_CART));
 		};
+	},
+
+	newCartAfterPurchased: function newCartAfterPurchased() {
+		return function (dispatch) {
+			return dispatch({ type: _constants2.default.NEW_CART_AFTER_PURCHASED, data: null });
+		};
 	}
 
 };
@@ -7712,7 +7718,8 @@ exports.default = {
 	GET_CART: 'GET_CART',
 	UPDATE_CART: 'UPDATE_CART',
 	BUY_FROM_CART: 'BUY_FROM_CART',
-	POST_CART: 'POST_CART'
+	POST_CART: 'POST_CART',
+	NEW_CART_AFTER_PURCHASED: 'NEW_CART_AFTER_PURCHASED'
 
 };
 
@@ -30131,7 +30138,10 @@ exports.default = function () {
         case _constants2.default.UPDATE_CART:
             return action.data;
 
-        case _constants2.default.BUY_FROM_CART:
+        /*case constants.BUY_FROM_CART: 
+            return initialState*/
+
+        case _constants2.default.NEW_CART_AFTER_PURCHASED:
             return initialState;
 
         default:
@@ -39275,6 +39285,10 @@ var _axios = __webpack_require__(183);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _actions = __webpack_require__(7);
+
+var _actions2 = _interopRequireDefault(_actions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -39292,7 +39306,7 @@ var Checkout = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).call(this, props));
 
         _this.state = {
-            token: null, stripeStatus: false, message: '', success: false, err: false
+            token: null, message: '', success: false, err: false
         };
         return _this;
     }
@@ -39300,27 +39314,32 @@ var Checkout = function (_Component) {
     _createClass(Checkout, [{
         key: 'receivedToken',
         value: function receivedToken(token) {
+            var _this2 = this;
+
+            //gets token from stripe elements, then sends token to 
+            //backend so that the charge can be made
             var charge = this.props.cart.total;
             _axios2.default.post('http://localhost:3000/charge-card', {
                 params: {
                     token: token,
-                    charge: charge
+                    charge: charge,
+                    cart: this.props.cart
                 }
             }).then(function (response) {
-                console.log(response);
-                this.setState({ success: true, message: 'The Operation was a Success' });
+                //console.log(response)
+                _this2.setState({ success: true, message: 'The Operation was a Success' });
+                _this2.props.newCartAfterPurchased();
                 return;
             }).catch(function (error) {
                 //console.log(error)
-                this.setState({ err: true, message: 'There was an Error Please Try Again' });
+                _this2.setState({ err: true, message: 'There was an Error Please Try Again' });
                 return;
             });
         }
     }, {
-        key: 'stripeStatus',
-        value: function stripeStatus(status) {
-
-            this.setState({ stripeStatus: status });
+        key: 'closeAlert',
+        value: function closeAlert() {
+            this.setState({ err: false, message: '', success: false });
         }
     }, {
         key: 'render',
@@ -39363,11 +39382,7 @@ var Checkout = function (_Component) {
                                 { className: 'row' },
                                 this.props.cart.concerts.map(function (con, i) {
                                     return _react2.default.createElement(_presentation.CheckoutItem, { key: i, con: con });
-                                })
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row' },
+                                }),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'col-md-2 col-md-offset-10 text-right text-center-xs' },
@@ -39376,11 +39391,7 @@ var Checkout = function (_Component) {
                                         { to: '/cart', style: { padding: 3 }, className: 'btn' },
                                         'Revise Cart'
                                     )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row mt--2' },
+                                ),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'col-sm-12' },
@@ -39410,24 +39421,24 @@ var Checkout = function (_Component) {
                                             )
                                         )
                                     )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row', style: { marginTop: -50 } },
+                                ),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'col-sm-12 col-md-8 col-md-offset-2 cart-customer-details' },
                                     _react2.default.createElement(
                                         'div',
                                         { className: 'row' },
+                                        this.state.success ? _react2.default.createElement(_presentation.SuccessAlert, { msg: this.state.message,
+                                            close: this.closeAlert.bind(this)
+                                        }) : null,
+                                        this.state.err ? _react2.default.createElement(_presentation.WarningAlert, { errMessage: this.state.message,
+                                            close: this.closeAlert.bind(this)
+                                        }) : null,
                                         _react2.default.createElement(
                                             _reactStripeElements.Elements,
                                             null,
                                             _react2.default.createElement(_CheckOutFormStripe2.default, { userName: this.props.user.name,
-                                                status: this.state.stripeStatus,
-                                                stripeStatusTrue: this.stripeStatus.bind(this, true),
-                                                stripeStatusFalse: this.stripeStatus.bind(this, false),
+
                                                 receivedToken: this.receivedToken.bind(this)
                                             })
                                         )
@@ -39454,7 +39465,11 @@ var stateToProps = function stateToProps(state) {
 };
 
 var dispatchToProps = function dispatchToProps(dispatch) {
-    return {};
+    return {
+        newCartAfterPurchased: function newCartAfterPurchased() {
+            return dispatch(_actions2.default.newCartAfterPurchased());
+        }
+    };
 };
 
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Checkout);
@@ -40181,10 +40196,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CheckOutFormStripe = function (_Component) {
     _inherits(CheckOutFormStripe, _Component);
 
-    function CheckOutFormStripe() {
+    function CheckOutFormStripe(props) {
         _classCallCheck(this, CheckOutFormStripe);
 
-        return _possibleConstructorReturn(this, (CheckOutFormStripe.__proto__ || Object.getPrototypeOf(CheckOutFormStripe)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CheckOutFormStripe.__proto__ || Object.getPrototypeOf(CheckOutFormStripe)).call(this, props));
+
+        _this.state = {
+            stripeStatus: false, finished: false
+        };
+        return _this;
     }
 
     _createClass(CheckOutFormStripe, [{
@@ -40194,21 +40214,18 @@ var CheckOutFormStripe = function (_Component) {
 
             // We don't want to let default form submission happen here, which would refresh the page.
             ev.preventDefault();
-
+            this.setState({ stripeStatus: true });
             // Within the context of `Elements`, this call to createToken knows which Element to
             // tokenize, since there's only one in this group.
             this.props.stripe.createToken({ name: this.props.userName }).then(function (_ref) {
                 var token = _ref.token;
 
                 _this2.props.receivedToken(token);
-                _this2.props.stripeStatusFalse;
-                //console.log('Received Stripe token:', token);
+                _this2.setState({ stripeStatus: false, finished: true });
                 return;
             }).catch(function (err) {
-                console.log('err', err.message);
                 return;
             });
-
             // However, this line of code will do the same thing:
             // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
         }
@@ -40220,12 +40237,17 @@ var CheckOutFormStripe = function (_Component) {
                 { onSubmit: this.handleSubmit.bind(this) },
                 'Card Details',
                 _react2.default.createElement(_reactStripeElements.CardElement, { style: { base: { fontSize: '18px' } } }),
-                /*
-                   this.props.status ? <h3>Processing Payment...</h3> :*/
-                _react2.default.createElement(
+                this.state.stripeStatus ? _react2.default.createElement(
+                    'h3',
+                    null,
+                    'Processing...'
+                ) : this.state.finished ? _react2.default.createElement(
+                    'h3',
+                    null,
+                    'Consider Those Tickets Bought!'
+                ) : _react2.default.createElement(
                     'button',
-                    { style: { marginTop: 18, padding: 5 }, className: 'btn btn--primary',
-                        onClick: this.props.stripeStatusTrue
+                    { style: { marginTop: 18, padding: 5 }, className: 'btn btn--primary'
                     },
                     'Buy Tickets!'
                 )

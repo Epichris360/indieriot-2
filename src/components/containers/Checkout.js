@@ -6,36 +6,41 @@ import { CheckoutItem, WarningAlert,
 import { Elements }         from 'react-stripe-elements'
 import CheckOutFormStripe   from './CheckOutFormStripe'
 import axios                from 'axios'
+import actions              from '../../actions'
 
 class Checkout extends Component{
     constructor(props){
         super(props)
         this.state = {
-            token:null, stripeStatus:false, message:'', success:false, err: false
+            token:null, message:'', success:false, err: false
         }
     }
     receivedToken(token){
+        //gets token from stripe elements, then sends token to 
+        //backend so that the charge can be made
         const charge = this.props.cart.total
         axios.post('http://localhost:3000/charge-card', {
             params: {
                 token: token, 
-                charge: charge
+                charge: charge,
+                cart: this.props.cart
             }
         })
-        .then(function (response) {
-            console.log(response)
+        .then((response) => {
+            //console.log(response)
             this.setState({success: true, message:'The Operation was a Success'})
+            this.props.newCartAfterPurchased()
             return
         })
-        .catch(function (error) {
+        .catch( (error) => {
             //console.log(error)
             this.setState({err: true, message:'There was an Error Please Try Again'})
             return
         });
     }
-    stripeStatus(status){
 
-        this.setState({ stripeStatus: status })
+    closeAlert(){
+        this.setState({err: false, message:'', success:false })
     }
     render(){
         return(
@@ -66,15 +71,15 @@ class Checkout extends Component{
                             }
                             
                             {/*end of item*/}
-                        </div>
+                        {/*</div>*/}
                         {/*<!--end of row-->*/}
-                        <div className="row">
+                        {/*<div className="row">*/}
                             <div className="col-md-2 col-md-offset-10 text-right text-center-xs">
                                 <Link to="/cart" style={{ padding:3 }} className="btn">Revise Cart</Link>
                             </div>
-                        </div>
+                        {/*</div>*/}
                         {/*<!--end of row-->*/}
-                        <div className="row mt--2">
+                        {/*<div className="row mt--2">*/}
                             <div className="col-sm-12">
                                 <div className="boxed boxed--border cart-total">
                                     <div>
@@ -87,16 +92,24 @@ class Checkout extends Component{
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {/*</div>*/}
                         {/*<!--end of row-->*/}
-                        <div className="row" style={{marginTop:-50}} >
+                        {/*<div className="row">*/}
                             <div className="col-sm-12 col-md-8 col-md-offset-2 cart-customer-details">                                
-                                <div className="row"> 
+                                <div className="row">
+                                    {
+                                        this.state.success ? <SuccessAlert msg={this.state.message}
+                                            close={this.closeAlert.bind(this) }
+                                        /> : null
+                                    }
+                                    {
+                                        this.state.err ? <WarningAlert errMessage={this.state.message} 
+                                            close={this.closeAlert.bind(this)}
+                                        /> : null
+                                    }
                                     <Elements>
                                         <CheckOutFormStripe userName={ this.props.user.name } 
-                                            status={this.state.stripeStatus}
-                                            stripeStatusTrue={this.stripeStatus.bind(this, true)}
-                                            stripeStatusFalse={this.stripeStatus.bind(this, false)}
+
                                             receivedToken={this.receivedToken.bind(this)} 
                                         />
                                     </Elements>
@@ -124,7 +137,7 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
     return{
-
+        newCartAfterPurchased: () => dispatch( actions.newCartAfterPurchased() )
     }
 }
 
