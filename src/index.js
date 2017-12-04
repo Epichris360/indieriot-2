@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import store from './stores'
 import { Provider } from 'react-redux'
-import { SignIn, SignUp, RecoverAccount, SalesColumns, Nav, AboutPage, Checkout,
+import { SignIn, SignUp, RecoverAccount, SalesColumns, Nav, AboutPage, Checkout, ConcertTicketsBought,
 	UserAccountSettings, CreateNewConcert, Cart } from './components/containers'
 import { Error404 } from './components/presentation'
 import Home from './components/Home'
@@ -25,17 +25,19 @@ const app = (
 				<div>
 					<Nav  />
 					<Switch>
-						<Route exact path="/" 		   			component={Home}   		   />
-						<Route path="/signin" 		   			component={SignIn} 		   />
-						<Route path="/signup" 		   			component={SignUp} 		   />
-						<Route path="/recover-account" 			component={RecoverAccount} />
-						<Route path="/tickets"	       			component={SalesColumns}   />
-						<Route path="/about-us" 				component={AboutPage} 	   />
-						<Route path="/account-settings"			component={UserAccountSettings} />
-						<Route path="/create-concert"			component={CreateNewConcert} />
-						<Route path="/cart"						component={Cart} />
-						<Route path="/checkout"					component={Checkout} />
-						<Route path="/email-confirmation/:code"   />{/* needs to be SSR'ed */}
+						<Route exact path="/" 		   			component={Home}   		   		 />
+						<Route path="/signin" 		   			component={SignIn} 		   		 />
+						<Route path="/signup" 		   			component={SignUp} 		   		 />
+						<Route path="/recover-account" 			component={RecoverAccount} 		 />
+						<Route path="/tickets"	       			component={SalesColumns}   		 />
+						<Route path="/about-us" 				component={AboutPage} 	   		 />
+						<Route path="/account-settings"			component={UserAccountSettings}  />
+						<Route path="/create-concert"			component={CreateNewConcert} 	 />
+						<Route path="/cart"						component={Cart} 				 />
+						<Route path="/checkout"					component={Checkout} 			 />
+						<Route path="/tickets-bought" 			component={ConcertTicketsBought} />
+						<Route path="/email-confirmation/:code"   />
+							{/* needs to be SSR'ed. Just use a regular mustache template */}
 						<Route 									component={Error404} />
 					</Switch>
 				</div>

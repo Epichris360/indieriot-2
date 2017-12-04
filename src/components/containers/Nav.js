@@ -74,16 +74,20 @@ class Nav extends Component{
                                                             <div className="row">
                                                                 <div className="dropdown__content col-md-2 col-sm-4">
                                                                     <ul className="menu-vertical">
-                                                                        {
-                                                                            this.props.user.category == 'artist' ?
-                                                                                <li className="dropdown" >
-                                                                                    <Link to="/account-settings" >
-                                                                                        <span className="dropdown__trigger">
-                                                                                            Account Settings
-                                                                                        </span>
-                                                                                    </Link>
-                                                                                </li> : null
-                                                                        }
+
+                                                                        <li className="dropdown" >
+                                                                            <Link to="/account-settings" >
+                                                                                <span className="dropdown__trigger">
+                                                                                    Account Settings
+                                                                                </span>
+                                                                            </Link>
+                                                                        </li>
+
+                                                                        <li className="dropdown" >
+                                                                            <Link to="/tickets-bought" >
+                                                                                Tickets I Bought
+                                                                            </Link>
+                                                                        </li>
                                                                         {
                                                                             this.props.user.category == 'artist' ? 
                                                                                 

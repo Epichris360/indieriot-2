@@ -4,6 +4,7 @@ import { Link }             from 'react-router-dom'
 import { connect }          from 'react-redux'
 import actions              from '../../actions'
 import { WarningAlert }     from '../presentation'
+import { v4 }               from 'uuid'
 
 class SignUp extends Component{
     constructor(props){
@@ -26,7 +27,7 @@ class SignUp extends Component{
             return
         }
         this.setState({loading:true})
-        const newUser = { username, email, password }
+        const newUser = { username, email, password, confirmationNum: v4() }
         this.props.registerUser(newUser)
         .then( data => {
             return

@@ -71,7 +71,6 @@ router.post("/charge-card", function(req, res){
 	  .then( () => {
 		  turbo.create('carts', newCart)
 		  .then(data => {
-			  console.log('new cart', data)
 			  return
 		  })
 		  return
