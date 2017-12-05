@@ -15,7 +15,7 @@ export default (props) => {
                             </li>
                             <li>
                                 <a href="#">
-                                    <span className="type--fine-print">help@stack.io</span>
+                                    <span className="type--fine-print">help@indieriot.io</span>
                                 </a>
                             </li>
                         </ul>
@@ -49,7 +49,7 @@ export default (props) => {
                 <div className="row">
                     <div className="col-sm-6">
                         <p className="type--fine-print">
-                            Supercharge your web workflow
+                            Supercharge your life.
                         </p>
                     </div>
                     <div className="col-sm-6 text-right text-center-xs">

@@ -80,7 +80,7 @@ class SignIn extends Component{
                                                     <button className="btn btn--sm type--uppercase" 
                                                     onClick={this.login.bind(this)}
                                                     >
-                                                    <b style={{color:'white'}} >Login</b>
+                                                    <b style={{color:'white', padding:5}} >Login</b>
                                                     </button> : <h3>Loading..</h3>
                                                 }
                                             </div>

@@ -1806,11 +1806,11 @@ mr = (function (mr, $, window, document){
 
         jQuery(document).on('click', '.modal-close', mr.modals.closeActiveModal);
 
-        jQuery(document).keyup(function(e) {
+        /*jQuery(document).keyup(function(e) {
             if (e.keyCode === 27) { // escape key maps to keycode `27`
                 mr.modals.closeActiveModal();
             }
-        });
+        });*/
 
         $('.modal-container:not(.modal--prevent-close)').on('click', function(e) { 
             if( e.target !== this ) return;

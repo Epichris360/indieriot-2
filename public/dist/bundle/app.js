@@ -391,8 +391,141 @@ module.exports = invariant;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _constants = __webpack_require__(16);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _utils = __webpack_require__(65);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+	Here are a few sample actions for User managment.
+	Feel free to remove and replace with your own actions
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*/
+
+exports.default = {
+
+	fetchUsers: function fetchUsers(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.getRequest('user', params, _constants2.default.USERS_RECEIVED));
+		};
+	},
+
+	addUser: function addUser(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.postRequest('user', params, _constants2.default.USER_CREATED));
+		};
+	},
+
+	// Unlike addUser, register() also maintains a session for login state. After calling 
+	// TurboClient.createUser(), the new user is logged in as well:
+	register: function register(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.createUser(params, _constants2.default.USER_CREATED));
+		};
+	},
+
+	loginUser: function loginUser(credentials) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.login(credentials, _constants2.default.CURRENT_USER_RECEIVED));
+		};
+	},
+
+	currentUser: function currentUser() {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.currentUser(_constants2.default.CURRENT_USER_RECEIVED));
+		};
+	},
+
+	logout: function logout() {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.logout(_constants2.default.USER_LOGOUT));
+		};
+	},
+
+	navBarTransparent: function navBarTransparent() {
+		return function (dispatch) {
+			return dispatch({ type: _constants2.default.TRANSPARENT, data: null });
+		};
+	},
+
+	navBarNotTransparent: function navBarNotTransparent() {
+		return function (dispatch) {
+			return dispatch({ type: _constants2.default.NOTTRANSPARENT, data: null });
+		};
+	},
+
+	noNavBar: function noNavBar() {
+		return function (dispatch) {
+			return dispatch({ type: _constants2.default.NONAVBAR, data: null });
+		};
+	},
+
+	updateUser: function updateUser(orig, params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.putRequest('user', orig, params, _constants2.default.UPDATE_USER));
+		};
+	},
+
+	createConcert: function createConcert(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.postRequest('concerts', params, _constants2.default.NEW_CONCERT));
+		};
+	},
+
+	getAllConcertsActive: function getAllConcertsActive(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.getRequest('concerts', null, _constants2.default.ALL_CONCERTS));
+		};
+	},
+
+	createCart: function createCart(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.postRequest('carts', params, _constants2.default.POST_CART));
+		};
+	},
+
+	getCart: function getCart(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.getRequest('carts', params, _constants2.default.GET_CART));
+		};
+	},
+
+	updateCart: function updateCart(id, params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.putWithIdRequest('carts', id, params, _constants2.default.UPDATE_CART));
+		};
+	},
+
+	newCartAfterPurchased: function newCartAfterPurchased() {
+		return function (dispatch) {
+			return dispatch({ type: _constants2.default.NEW_CART_AFTER_PURCHASED, data: null });
+		};
+	},
+
+	getMyPurchasedCarts: function getMyPurchasedCarts(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.getRequest('purchased_carts', params, null));
+		};
+	}
+
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var bind = __webpack_require__(71);
-var isBuffer = __webpack_require__(190);
+var isBuffer = __webpack_require__(192);
 
 /*global toString:true*/
 
@@ -695,134 +828,67 @@ module.exports = {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
+exports.PurchasedModal = exports.PurchasedItems = exports.CheckoutItem = exports.CartItem = exports.Error404 = exports.SuccessAlert = exports.WarningAlert = exports.Footer = exports.Item = undefined;
 
-var _constants = __webpack_require__(16);
+var _Item = __webpack_require__(160);
 
-var _constants2 = _interopRequireDefault(_constants);
+var _Item2 = _interopRequireDefault(_Item);
 
-var _utils = __webpack_require__(65);
+var _Footer = __webpack_require__(161);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _WarningAlert = __webpack_require__(162);
+
+var _WarningAlert2 = _interopRequireDefault(_WarningAlert);
+
+var _SuccessAlert = __webpack_require__(163);
+
+var _SuccessAlert2 = _interopRequireDefault(_SuccessAlert);
+
+var _Error = __webpack_require__(164);
+
+var _Error2 = _interopRequireDefault(_Error);
+
+var _CartItem = __webpack_require__(165);
+
+var _CartItem2 = _interopRequireDefault(_CartItem);
+
+var _CheckoutItem = __webpack_require__(166);
+
+var _CheckoutItem2 = _interopRequireDefault(_CheckoutItem);
+
+var _PurchasedItems = __webpack_require__(167);
+
+var _PurchasedItems2 = _interopRequireDefault(_PurchasedItems);
+
+var _PurchasedModal = __webpack_require__(168);
+
+var _PurchasedModal2 = _interopRequireDefault(_PurchasedModal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-	Here are a few sample actions for User managment.
-	Feel free to remove and replace with your own actions
-* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*/
-
-exports.default = {
-
-	fetchUsers: function fetchUsers(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.getRequest('user', params, _constants2.default.USERS_RECEIVED));
-		};
-	},
-
-	addUser: function addUser(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.postRequest('user', params, _constants2.default.USER_CREATED));
-		};
-	},
-
-	// Unlike addUser, register() also maintains a session for login state. After calling 
-	// TurboClient.createUser(), the new user is logged in as well:
-	register: function register(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.createUser(params, _constants2.default.USER_CREATED));
-		};
-	},
-
-	loginUser: function loginUser(credentials) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.login(credentials, _constants2.default.CURRENT_USER_RECEIVED));
-		};
-	},
-
-	currentUser: function currentUser() {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.currentUser(_constants2.default.CURRENT_USER_RECEIVED));
-		};
-	},
-
-	logout: function logout() {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.logout(_constants2.default.USER_LOGOUT));
-		};
-	},
-
-	navBarTransparent: function navBarTransparent() {
-		return function (dispatch) {
-			return dispatch({ type: _constants2.default.TRANSPARENT, data: null });
-		};
-	},
-
-	navBarNotTransparent: function navBarNotTransparent() {
-		return function (dispatch) {
-			return dispatch({ type: _constants2.default.NOTTRANSPARENT, data: null });
-		};
-	},
-
-	noNavBar: function noNavBar() {
-		return function (dispatch) {
-			return dispatch({ type: _constants2.default.NONAVBAR, data: null });
-		};
-	},
-
-	updateUser: function updateUser(orig, params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.putRequest('user', orig, params, _constants2.default.UPDATE_USER));
-		};
-	},
-
-	createConcert: function createConcert(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.postRequest('concerts', params, _constants2.default.NEW_CONCERT));
-		};
-	},
-
-	getAllConcertsActive: function getAllConcertsActive(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.getRequest('concerts', null, _constants2.default.ALL_CONCERTS));
-		};
-	},
-
-	createCart: function createCart(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.postRequest('carts', params, _constants2.default.POST_CART));
-		};
-	},
-
-	getCart: function getCart(params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.getRequest('carts', params, _constants2.default.GET_CART));
-		};
-	},
-
-	updateCart: function updateCart(id, params) {
-		return function (dispatch) {
-			return dispatch(_utils.TurboClient.putWithIdRequest('carts', id, params, _constants2.default.UPDATE_CART));
-		};
-	},
-
-	newCartAfterPurchased: function newCartAfterPurchased() {
-		return function (dispatch) {
-			return dispatch({ type: _constants2.default.NEW_CART_AFTER_PURCHASED, data: null });
-		};
-	}
-
-};
+exports.Item = _Item2.default;
+exports.Footer = _Footer2.default;
+exports.WarningAlert = _WarningAlert2.default;
+exports.SuccessAlert = _SuccessAlert2.default;
+exports.Error404 = _Error2.default;
+exports.CartItem = _CartItem2.default;
+exports.CheckoutItem = _CheckoutItem2.default;
+exports.PurchasedItems = _PurchasedItems2.default;
+exports.PurchasedModal = _PurchasedModal2.default;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1746,7 +1812,7 @@ request.put = function(url, data, fn) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/* @preserve
@@ -7375,56 +7441,6 @@ module.exports = ret;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15), __webpack_require__(147).setImmediate))
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.CheckoutItem = exports.CartItem = exports.Error404 = exports.SuccessAlert = exports.WarningAlert = exports.Footer = exports.Item = undefined;
-
-var _Item = __webpack_require__(160);
-
-var _Item2 = _interopRequireDefault(_Item);
-
-var _Footer = __webpack_require__(161);
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _WarningAlert = __webpack_require__(162);
-
-var _WarningAlert2 = _interopRequireDefault(_WarningAlert);
-
-var _SuccessAlert = __webpack_require__(163);
-
-var _SuccessAlert2 = _interopRequireDefault(_SuccessAlert);
-
-var _Error = __webpack_require__(164);
-
-var _Error2 = _interopRequireDefault(_Error);
-
-var _CartItem = __webpack_require__(165);
-
-var _CartItem2 = _interopRequireDefault(_CartItem);
-
-var _CheckoutItem = __webpack_require__(166);
-
-var _CheckoutItem2 = _interopRequireDefault(_CheckoutItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Item = _Item2.default;
-exports.Footer = _Footer2.default;
-exports.WarningAlert = _WarningAlert2.default;
-exports.SuccessAlert = _SuccessAlert2.default;
-exports.Error404 = _Error2.default;
-exports.CartItem = _CartItem2.default;
-exports.CheckoutItem = _CheckoutItem2.default;
-
-/***/ }),
 /* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7771,7 +7787,7 @@ var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
@@ -9231,23 +9247,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.PaymentRequestButtonElement = exports.PostalCodeElement = exports.CardCVCElement = exports.CardExpiryElement = exports.CardNumberElement = exports.CardElement = exports.Elements = exports.injectStripe = exports.StripeProvider = undefined;
 
-var _Provider = __webpack_require__(182);
+var _Provider = __webpack_require__(184);
 
 var _Provider2 = _interopRequireDefault(_Provider);
 
-var _inject = __webpack_require__(183);
+var _inject = __webpack_require__(185);
 
 var _inject2 = _interopRequireDefault(_inject);
 
-var _Elements = __webpack_require__(184);
+var _Elements = __webpack_require__(186);
 
 var _Elements2 = _interopRequireDefault(_Elements);
 
-var _Element = __webpack_require__(185);
+var _Element = __webpack_require__(187);
 
 var _Element2 = _interopRequireDefault(_Element);
 
-var _PaymentRequestButtonElement = __webpack_require__(186);
+var _PaymentRequestButtonElement = __webpack_require__(188);
 
 var _PaymentRequestButtonElement2 = _interopRequireDefault(_PaymentRequestButtonElement);
 
@@ -9277,8 +9293,8 @@ exports.PaymentRequestButtonElement = _PaymentRequestButtonElement2.default;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(6);
-var normalizeHeaderName = __webpack_require__(192);
+var utils = __webpack_require__(7);
+var normalizeHeaderName = __webpack_require__(194);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -10569,39 +10585,39 @@ var _SignIn = __webpack_require__(159);
 
 var _SignIn2 = _interopRequireDefault(_SignIn);
 
-var _SignUp = __webpack_require__(167);
+var _SignUp = __webpack_require__(169);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _RecoverAccount = __webpack_require__(171);
+var _RecoverAccount = __webpack_require__(173);
 
 var _RecoverAccount2 = _interopRequireDefault(_RecoverAccount);
 
-var _SalesColumns = __webpack_require__(172);
+var _SalesColumns = __webpack_require__(174);
 
 var _SalesColumns2 = _interopRequireDefault(_SalesColumns);
 
-var _AboutPage = __webpack_require__(173);
+var _AboutPage = __webpack_require__(175);
 
 var _AboutPage2 = _interopRequireDefault(_AboutPage);
 
-var _UserAccountSettings = __webpack_require__(174);
+var _UserAccountSettings = __webpack_require__(176);
 
 var _UserAccountSettings2 = _interopRequireDefault(_UserAccountSettings);
 
-var _CreateNewConcert = __webpack_require__(175);
+var _CreateNewConcert = __webpack_require__(177);
 
 var _CreateNewConcert2 = _interopRequireDefault(_CreateNewConcert);
 
-var _Cart = __webpack_require__(180);
+var _Cart = __webpack_require__(182);
 
 var _Cart2 = _interopRequireDefault(_Cart);
 
-var _Checkout = __webpack_require__(181);
+var _Checkout = __webpack_require__(183);
 
 var _Checkout2 = _interopRequireDefault(_Checkout);
 
-var _ConcertTicketsBought = __webpack_require__(207);
+var _ConcertTicketsBought = __webpack_require__(209);
 
 var _ConcertTicketsBought2 = _interopRequireDefault(_ConcertTicketsBought);
 
@@ -11628,7 +11644,7 @@ module.exports = isObject;
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),IndexDB=function(e){var n=e;return{dbTransaction:function(e){if("undefined"==typeof window)return null;if(window){if(null==n.site_id){var r=new Error("Please Set Your TURBO_APP_ID");return void e(r,null)}if(n.site_id.length<20){var r=new Error("Please Set Your TURBO_APP_ID");return void e(r,null)}var t=window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB||window.shimIndexedDB;if(null==t)return null;if(void 0==t)return null;var o=t.open("turbo",1);return o.onupgradeneeded=function(){var e=o.result;e.createObjectStore("MyObjectStore",{keyPath:"id"})},o.onsuccess=function(){var n=o.result,r=n.transaction("MyObjectStore","readwrite"),t=r.objectStore("MyObjectStore");e(null,t),r.oncomplete=function(){n.close()}},o}}}};module.exports=IndexDB;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),IndexDB=function(e){var n=e;return{dbTransaction:function(e){if("undefined"==typeof window)return null;if(window){if(null==n.site_id){var r=new Error("Please Set Your TURBO_APP_ID");return void e(r,null)}if(n.site_id.length<20){var r=new Error("Please Set Your TURBO_APP_ID");return void e(r,null)}var t=window.indexedDB||window.mozIndexedDB||window.webkitIndexedDB||window.msIndexedDB||window.shimIndexedDB;if(null==t)return null;if(void 0==t)return null;var o=t.open("turbo",1);return o.onupgradeneeded=function(){var e=o.result;e.createObjectStore("MyObjectStore",{keyPath:"id"})},o.onsuccess=function(){var n=o.result,r=n.transaction("MyObjectStore","readwrite"),t=r.objectStore("MyObjectStore");e(null,t),r.oncomplete=function(){n.close()}},o}}}};module.exports=IndexDB;
 
 /***/ }),
 /* 68 */
@@ -11745,13 +11761,13 @@ module.exports = function bind(fn, thisArg) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(6);
-var settle = __webpack_require__(193);
-var buildURL = __webpack_require__(195);
-var parseHeaders = __webpack_require__(196);
-var isURLSameOrigin = __webpack_require__(197);
+var utils = __webpack_require__(7);
+var settle = __webpack_require__(195);
+var buildURL = __webpack_require__(197);
+var parseHeaders = __webpack_require__(198);
+var isURLSameOrigin = __webpack_require__(199);
 var createError = __webpack_require__(73);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(198);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(200);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -11848,7 +11864,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(199);
+      var cookies = __webpack_require__(201);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -11933,7 +11949,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(194);
+var enhanceError = __webpack_require__(196);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -12012,9 +12028,9 @@ var _reactRedux = __webpack_require__(4);
 
 var _containers = __webpack_require__(52);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
-var _Home = __webpack_require__(208);
+var _Home = __webpack_require__(210);
 
 var _Home2 = _interopRequireDefault(_Home);
 
@@ -34002,7 +34018,7 @@ exports.default = {
 /* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var superagent=__webpack_require__(8),Promise=__webpack_require__(9),StripeUtils=__webpack_require__(149),Auth=__webpack_require__(150),IndexDB=__webpack_require__(67),Functions=__webpack_require__(151),Platform=__webpack_require__(152),TurboStorage=__webpack_require__(153),TurboDatastore=__webpack_require__(154),TurboEmail=__webpack_require__(155),Vector=__webpack_require__(156),Microservice=function(e){var r={site_id:e.site_id,turbo_url:"https://www.turbo360.co",turbo_platform_url:"https://platform.turbo360-vector.com",base_url:"https://api.turbo360.co",turbo_app_header:"Turbo-App-Id"},t=StripeUtils(r),i=TurboDatastore(r),u=Auth(r),o=Functions(r),a=Platform(r),c=TurboStorage(r),s=TurboEmail(r),n=Vector(r);return{fetch:i.fetch,fetchOne:i.fetchOne,create:i.create,update:i.update,remove:i.remove,updateEntity:i.updateEntity,removeEntity:i.removeEntity,login:u.login,logout:u.logout,createUser:u.createUser,fetchUser:u.fetchUser,currentUser:u.currentUser,sendEmail:s.sendEmail,createStripeCharge:t.createStripeCharge,createStripeAccount:t.createStripeAccount,recurringCharge:t.recurringCharge,initializeStripe:t.initializeStripe,submitStripeCharge:t.submitStripeCharge,submitStripeCard:t.submitStripeCard,executeFunction:o.executeFunction,site:a.site,fetchSites:a.fetchSites,uploadFile:c.uploadFile,runVector:n.runVector}};module.exports=Microservice;
+var superagent=__webpack_require__(9),Promise=__webpack_require__(10),StripeUtils=__webpack_require__(149),Auth=__webpack_require__(150),IndexDB=__webpack_require__(67),Functions=__webpack_require__(151),Platform=__webpack_require__(152),TurboStorage=__webpack_require__(153),TurboDatastore=__webpack_require__(154),TurboEmail=__webpack_require__(155),Vector=__webpack_require__(156),Microservice=function(e){var r={site_id:e.site_id,turbo_url:"https://www.turbo360.co",turbo_platform_url:"https://platform.turbo360-vector.com",base_url:"https://api.turbo360.co",turbo_app_header:"Turbo-App-Id"},t=StripeUtils(r),i=TurboDatastore(r),u=Auth(r),o=Functions(r),a=Platform(r),c=TurboStorage(r),s=TurboEmail(r),n=Vector(r);return{fetch:i.fetch,fetchOne:i.fetchOne,create:i.create,update:i.update,remove:i.remove,updateEntity:i.updateEntity,removeEntity:i.removeEntity,login:u.login,logout:u.logout,createUser:u.createUser,fetchUser:u.fetchUser,currentUser:u.currentUser,sendEmail:s.sendEmail,createStripeCharge:t.createStripeCharge,createStripeAccount:t.createStripeAccount,recurringCharge:t.recurringCharge,initializeStripe:t.initializeStripe,submitStripeCharge:t.submitStripeCharge,submitStripeCard:t.submitStripeCard,executeFunction:o.executeFunction,site:a.site,fetchSites:a.fetchSites,uploadFile:c.uploadFile,runVector:n.runVector}};module.exports=Microservice;
 
 /***/ }),
 /* 142 */
@@ -35375,50 +35391,50 @@ exports.clearImmediate = clearImmediate;
 /* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),StripeUtils=function(e){var r=e;return{createStripeAccount:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.client?void n(new Error("Missing Client Parameter")):null==e.stripeToken?void n(new Error("Missing StripeToken Parameter")):void e.stripeRef.customers.create({description:e.client._id.toString(),source:e.stripeToken},function(r,t){if(r)return void n(r);var o=t.sources.data[0];e.client.stripeId=t.id,e.client.creditCard={id:t.id,lastFour:o.last4,exp_month:o.exp_month,exp_year:o.exp_year,brand:o.brand},i(e.client)})})},createStripeCharge:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.amount?void n(new Error("Missing Amount Parameter")):null==e.stripeToken?void n(new Error("Missing StripeToken Parameter")):null==e.description?void n(new Error("Missing Description Parameter")):void e.stripeRef.charges.create({amount:100*e.amount,currency:"usd",source:e.stripeToken,description:e.description},function(e,r){if(e)return void n(e);i(r)})})},recurringCharge:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.amount?void n(new Error("Missing amount parameter")):null==e.customerId?void n(new Error("Missing customerId parameter")):null==e.description?void n(new Error("Missing description parameter")):void e.stripeRef.charges.create({amount:100*e.amount,currency:"usd",customer:e.customerId,description:e.description},function(e,r){if(e)return void n(e);i(r)})})},initializeStripe:function(e){return new Promise(function(i,n){if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==e.stripePublicKey)return void n(new Error("Missing stripePublicKey"));if(null==e.text)return void n(new Error("Missing text"));if(null==e.callback)return void n(new Error("Missing callback"));var t=e.image||"/images/logo_260.png",o=e.withAddress||!0;i(StripeCheckout.configure({key:e.stripePublicKey,image:t,address:o,locale:"auto",panelLabel:e.text,token:function(r){e.callback(r)},closed:function(){e.onClosed&&e.onClosed()}}))})},submitStripeCharge:function(e,i){return new Promise(function(n,t){if(null==e)return void t(new Error("Missing Stripe Token"));if(null==r.site_id)return void t(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void t(new Error("Please Set Your TURBO_APP_ID"));var o={site:r.site_id,exec:"create-stripe-charge",stripeToken:e.id,email:e.email,name:e.card.name,amount:i.price,description:i.description};superagent.post(r.base_url+"/functions").send(o).set({Accept:"application/json"}).end(function(e,r){return e?void t(e):"success"!=r.body.confirmation?void t({message:r.body.message}):void n(r.body)})})},submitStripeCard:function(e){return new Promise(function(i,n){if(null==e)return void n(new Error("Missing Stripe Token"));if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));var t={site:r.site_id,stripeToken:e.id,email:e.email,name:e.card.name};superagent.post(r.turbo_platform_url+"/create-stripe-customer").send(t).set({Accept:"application/json"}).end(function(e,r){return e?void n(e):"success"!=r.body.confirmation?void n({message:r.body.message}):void i(r.body)})})}}};module.exports=StripeUtils;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),StripeUtils=function(e){var r=e;return{createStripeAccount:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.client?void n(new Error("Missing Client Parameter")):null==e.stripeToken?void n(new Error("Missing StripeToken Parameter")):void e.stripeRef.customers.create({description:e.client._id.toString(),source:e.stripeToken},function(r,t){if(r)return void n(r);var o=t.sources.data[0];e.client.stripeId=t.id,e.client.creditCard={id:t.id,lastFour:o.last4,exp_month:o.exp_month,exp_year:o.exp_year,brand:o.brand},i(e.client)})})},createStripeCharge:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.amount?void n(new Error("Missing Amount Parameter")):null==e.stripeToken?void n(new Error("Missing StripeToken Parameter")):null==e.description?void n(new Error("Missing Description Parameter")):void e.stripeRef.charges.create({amount:100*e.amount,currency:"usd",source:e.stripeToken,description:e.description},function(e,r){if(e)return void n(e);i(r)})})},recurringCharge:function(e){return new Promise(function(i,n){return null==r.site_id?void n(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void n(new Error("Please Set Your TURBO_APP_ID")):null==e.stripeRef?void n(new Error("Missing stripeRef")):null==e.amount?void n(new Error("Missing amount parameter")):null==e.customerId?void n(new Error("Missing customerId parameter")):null==e.description?void n(new Error("Missing description parameter")):void e.stripeRef.charges.create({amount:100*e.amount,currency:"usd",customer:e.customerId,description:e.description},function(e,r){if(e)return void n(e);i(r)})})},initializeStripe:function(e){return new Promise(function(i,n){if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==e.stripePublicKey)return void n(new Error("Missing stripePublicKey"));if(null==e.text)return void n(new Error("Missing text"));if(null==e.callback)return void n(new Error("Missing callback"));var t=e.image||"/images/logo_260.png",o=e.withAddress||!0;i(StripeCheckout.configure({key:e.stripePublicKey,image:t,address:o,locale:"auto",panelLabel:e.text,token:function(r){e.callback(r)},closed:function(){e.onClosed&&e.onClosed()}}))})},submitStripeCharge:function(e,i){return new Promise(function(n,t){if(null==e)return void t(new Error("Missing Stripe Token"));if(null==r.site_id)return void t(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void t(new Error("Please Set Your TURBO_APP_ID"));var o={site:r.site_id,exec:"create-stripe-charge",stripeToken:e.id,email:e.email,name:e.card.name,amount:i.price,description:i.description};superagent.post(r.base_url+"/functions").send(o).set({Accept:"application/json"}).end(function(e,r){return e?void t(e):"success"!=r.body.confirmation?void t({message:r.body.message}):void n(r.body)})})},submitStripeCard:function(e){return new Promise(function(i,n){if(null==e)return void n(new Error("Missing Stripe Token"));if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));var t={site:r.site_id,stripeToken:e.id,email:e.email,name:e.card.name};superagent.post(r.turbo_platform_url+"/create-stripe-customer").send(t).set({Accept:"application/json"}).end(function(e,r){return e?void n(e):"success"!=r.body.confirmation?void n({message:r.body.message}):void i(r.body)})})}}};module.exports=StripeUtils;
 
 /***/ }),
 /* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),IndexDB=__webpack_require__(67),Auth=function(e){var r=e;return{login:function(e){return new Promise(function(n,i){return null==r.site_id?void i(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):(e.site=r.site_id,void superagent.post(r.base_url+"/auth/login").send(e).set("Accept","application/json").end(function(e,o){if(e)return void i(e);var t=o.body;if("success"!=t.confirmation){var u=t.message||"Login Failed";return void i(new Error(u))}var s=t.user||t.result;if("undefined"==typeof window)return void n(s);var d=IndexDB(r);if(null==d)return void n(s);d.dbTransaction(function(e,o){if(e)return void i(e);o.put({id:r.site_id,token:t.token}),n(s)})}))})},logout:function(){return new Promise(function(e,n){if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if("undefined"==typeof window)return void e(null);var i=IndexDB(r);if(null==i)return void e(null);i.dbTransaction(function(i,o){if(i)return void n(i);var t=o.delete(r.site_id);t.onsuccess=function(){console.log("Token Removed"),e(null)},t.onerror=function(e){n(e.target)}})})},currentUser:function(){return new Promise(function(e,n){if("undefined"==typeof window)return void e(null);var i=IndexDB(r);if(null==i)return void e(null);i.dbTransaction(function(i,o){if(i)return void n(i);var t=o.get(r.site_id);t.onsuccess=function(){if(null==t.result)return void n(new Error("Not Logged In"));superagent.get(r.base_url+"/auth/currentuser").query(null).set("Accept","application/json").set("turbo-token",t.result.token).end(function(r,i){if(r)return void n(r);if("success"!=i.body.confirmation)return void n(new Error(i.body.message));var o=i.body.user||i.body.result;e(o)})},t.onerror=function(e){n(e.target)}})})},createUser:function(e){return new Promise(function(n,i){return null==r.site_id?void i(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):(e.site=r.site_id,void superagent.post(r.base_url+"/auth/createuser").send(e).set("Accept","application/json").end(function(e,o){if(e)return void i(e);var t=o.body;if("success"!=t.confirmation){var u=t.message||"Registration Failed";return void i(new Error(u))}var s=t.user||t.result;if("undefined"==typeof window)return console.log("Window undefined!"),void n(s);var d=IndexDB(r);if(null==d)return void n(s);d.dbTransaction(function(e,o){if(e)return void i(e);o.put({id:r.site_id,token:t.token}),n(s)})}))})},fetchUser:function(e){return new Promise(function(n,i){var o={Accept:"application/json"};superagent.get(r.base_url+"/api/user/"+e).query(null).set(o).end(function(e,r){if(e)return void i(e);if("success"!=r.body.confirmation)return void i(new Error(r.body.message));var o=r.body.result||r.body.user;n(o)})})}}};module.exports=Auth;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),IndexDB=__webpack_require__(67),Auth=function(e){var r=e;return{login:function(e){return new Promise(function(n,i){return null==r.site_id?void i(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):(e.site=r.site_id,void superagent.post(r.base_url+"/auth/login").send(e).set("Accept","application/json").end(function(e,o){if(e)return void i(e);var t=o.body;if("success"!=t.confirmation){var u=t.message||"Login Failed";return void i(new Error(u))}var s=t.user||t.result;if("undefined"==typeof window)return void n(s);var d=IndexDB(r);if(null==d)return void n(s);d.dbTransaction(function(e,o){if(e)return void i(e);o.put({id:r.site_id,token:t.token}),n(s)})}))})},logout:function(){return new Promise(function(e,n){if(null==r.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if("undefined"==typeof window)return void e(null);var i=IndexDB(r);if(null==i)return void e(null);i.dbTransaction(function(i,o){if(i)return void n(i);var t=o.delete(r.site_id);t.onsuccess=function(){console.log("Token Removed"),e(null)},t.onerror=function(e){n(e.target)}})})},currentUser:function(){return new Promise(function(e,n){if("undefined"==typeof window)return void e(null);var i=IndexDB(r);if(null==i)return void e(null);i.dbTransaction(function(i,o){if(i)return void n(i);var t=o.get(r.site_id);t.onsuccess=function(){if(null==t.result)return void n(new Error("Not Logged In"));superagent.get(r.base_url+"/auth/currentuser").query(null).set("Accept","application/json").set("turbo-token",t.result.token).end(function(r,i){if(r)return void n(r);if("success"!=i.body.confirmation)return void n(new Error(i.body.message));var o=i.body.user||i.body.result;e(o)})},t.onerror=function(e){n(e.target)}})})},createUser:function(e){return new Promise(function(n,i){return null==r.site_id?void i(new Error("Please Set Your TURBO_APP_ID")):r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):(e.site=r.site_id,void superagent.post(r.base_url+"/auth/createuser").send(e).set("Accept","application/json").end(function(e,o){if(e)return void i(e);var t=o.body;if("success"!=t.confirmation){var u=t.message||"Registration Failed";return void i(new Error(u))}var s=t.user||t.result;if("undefined"==typeof window)return console.log("Window undefined!"),void n(s);var d=IndexDB(r);if(null==d)return void n(s);d.dbTransaction(function(e,o){if(e)return void i(e);o.put({id:r.site_id,token:t.token}),n(s)})}))})},fetchUser:function(e){return new Promise(function(n,i){var o={Accept:"application/json"};superagent.get(r.base_url+"/api/user/"+e).query(null).set(o).end(function(e,r){if(e)return void i(e);if("success"!=r.body.confirmation)return void i(new Error(r.body.message));var o=r.body.result||r.body.user;n(o)})})}}};module.exports=Auth;
 
 /***/ }),
 /* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),Functions=function(e){var r=e;return{executeFunction:function(e){return new Promise(function(n,i){return r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):null==e.exec?void i(new Error("Missing Exec Parameter")):(e.site=r.site_id,void superagent.post(r.base_url+"/functions").send(parameters).set("Accept","application/json").end(function(e,r){if(e)return void i(e);var t=r.body;if("success"!=t.confirmation)return void i(new Error(t.message));n(t)}))})}}};module.exports=Functions;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),Functions=function(e){var r=e;return{executeFunction:function(e){return new Promise(function(n,i){return r.site_id.length<20?void i(new Error("Please Set Your TURBO_APP_ID")):null==e?void i(new Error("Post parameters required.")):null==e.exec?void i(new Error("Missing Exec Parameter")):(e.site=r.site_id,void superagent.post(r.base_url+"/functions").send(parameters).set("Accept","application/json").end(function(e,r){if(e)return void i(e);var t=r.body;if("success"!=t.confirmation)return void i(new Error(t.message));n(t)}))})}}};module.exports=Functions;
 
 /***/ }),
 /* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),Platform=function(e){var r=e;return{site:function(){return new Promise(function(e,t){if(null==r.site_id)return void t(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void t(new Error("Please Set Your TURBO_APP_ID"));var i=r.turbo_url+"/api/site/"+r.site_id;superagent.get(i).query(null).set("Accept","application/json").end(function(r,i){if(r)return void t(r);var n=i.body;if("success"!=n.confirmation)return void t(new Error(n.message));e(n.result)})})},fetchSites:function(e){return new Promise(function(t,i){if(null==r.site_id)return void i(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void i(new Error("Please Set Your TURBO_APP_ID"));var n=r.turbo_url+"/api/site";superagent.get(n).query(e).set("Accept","application/json").end(function(e,r){if(e)return void i(e);var n=r.body;if("success"!=n.confirmation)return void i(new Error(n.message));var o=n.results||n.result;t(o)})})}}};module.exports=Platform;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),Platform=function(e){var r=e;return{site:function(){return new Promise(function(e,t){if(null==r.site_id)return void t(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void t(new Error("Please Set Your TURBO_APP_ID"));var i=r.turbo_url+"/api/site/"+r.site_id;superagent.get(i).query(null).set("Accept","application/json").end(function(r,i){if(r)return void t(r);var n=i.body;if("success"!=n.confirmation)return void t(new Error(n.message));e(n.result)})})},fetchSites:function(e){return new Promise(function(t,i){if(null==r.site_id)return void i(new Error("Please Set Your TURBO_APP_ID"));if(r.site_id.length<20)return void i(new Error("Please Set Your TURBO_APP_ID"));var n=r.turbo_url+"/api/site";superagent.get(n).query(e).set("Accept","application/json").end(function(e,r){if(e)return void i(e);var n=r.body;if("success"!=n.confirmation)return void i(new Error(n.message));var o=n.results||n.result;t(o)})})}}};module.exports=Platform;
 
 /***/ }),
 /* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),TurboStorage=function(e){var n=e;return{uploadFile:function(e){return new Promise(function(t,r){if(null==e)return void r(new Error("Missing file"));if(null==e.name)return void r(new Error("Missing file name"));if(null==e.type)return void r(new Error("Missing file type"));var i={site:n.site_id,exec:"upload-string",filename:e.name,filetype:e.type};superagent.post(n.base_url+"/functions").send(i).set("Content-Type","application/json").end(function(i,o){if(i)return void r(i);var s=o.body;if("success"!=s.confirmation)return void r(new Error(s.message));var u=s.result;if(-1==e.type.indexOf("image"))return void superagent.put(u).send(e).set("Content-Type",e.type).end(function(i,o){if(i)return void r(i);var u={site:n.site_id,name:e.name,type:e.type,size:e.size,url:"https://storage.turbo360.co/"+s.site.slug+"/"+e.name};superagent.post(n.turbo_url+"/api/blob").send(u).set("Accept","application/json").end(function(e,n){if(e)return void r(e);t(n.body)})});var a=superagent.post(u);a.attach("file",e),a.end(function(i,o){if(i)return void r(i);var s=o.body.image,u={site:n.site_id,name:e.name,type:e.type,size:e.size,url:s.address};superagent.post(n.turbo_url+"/api/blob").send(u).set("Accept","application/json").end(function(e,n){if(e)return void r(e);t(n.body)})})})})}}};module.exports=TurboStorage;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),TurboStorage=function(e){var n=e;return{uploadFile:function(e){return new Promise(function(t,r){if(null==e)return void r(new Error("Missing file"));if(null==e.name)return void r(new Error("Missing file name"));if(null==e.type)return void r(new Error("Missing file type"));var i={site:n.site_id,exec:"upload-string",filename:e.name,filetype:e.type};superagent.post(n.base_url+"/functions").send(i).set("Content-Type","application/json").end(function(i,o){if(i)return void r(i);var s=o.body;if("success"!=s.confirmation)return void r(new Error(s.message));var u=s.result;if(-1==e.type.indexOf("image"))return void superagent.put(u).send(e).set("Content-Type",e.type).end(function(i,o){if(i)return void r(i);var u={site:n.site_id,name:e.name,type:e.type,size:e.size,url:"https://storage.turbo360.co/"+s.site.slug+"/"+e.name};superagent.post(n.turbo_url+"/api/blob").send(u).set("Accept","application/json").end(function(e,n){if(e)return void r(e);t(n.body)})});var a=superagent.post(u);a.attach("file",e),a.end(function(i,o){if(i)return void r(i);var s=o.body.image,u={site:n.site_id,name:e.name,type:e.type,size:e.size,url:s.address};superagent.post(n.turbo_url+"/api/blob").send(u).set("Accept","application/json").end(function(e,n){if(e)return void r(e);t(n.body)})})})})}}};module.exports=TurboStorage;
 
 /***/ }),
 /* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),TurboDatastore=function(e){var r=e,t=function(t,i){return null==i&&(i={}),i.site=r.site_id,new Promise(function(r,o){if(null==i.site)return void o(new Error("Please Set Your TURBO_APP_ID"));if(0==i.site.length)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=t.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.get(e.base_url+"/api/"+n).query(i).set(u).end(function(e,t){if(e)return void o(e);if("fail"==t.body.confirmation)return void o(new Error(t.body.message));var i=t.body.results;r(i)})})},i=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n={Accept:"application/json"};n[e.turbo_app_header]=e.site_id;var u=r.toLowerCase().trim();superagent.get(e.base_url+"/api/"+u+"/"+t).query(null).set(n).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result;i(t)})})},o=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));if(null==t)return void o(new Error("Post parameters required."));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,t.site=e.site_id,superagent.post(e.base_url+"/api/"+n).send(t).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})},n=function(r,t,i){return new Promise(function(o,n){if(null==e.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==i)return void n(new Error("Updated parameters required."));var u=r.toLowerCase().trim(),s={Accept:"application/json"};s[e.turbo_app_header]=e.site_id,superagent.put(e.base_url+"/api/"+u+"/"+t).send(i).set(s).end(function(e,r){if(e)return void n(e);if("fail"==r.body.confirmation)return void n(new Error(r.body.message));var t=r.body.result||r.body.results;o(t)})})},u=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.delete(e.base_url+"/api/"+n+"/"+t).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})};return{fetch:t,fetchOne:i,create:o,update:function(r,t,i){return new Promise(function(o,n){if(null==e.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==i)return void n(new Error("Post parameters required."));Object.keys(i).forEach(function(e,r){var o=i[e];t[e]=o});var u=r.toLowerCase().trim(),s={Accept:"application/json"};s[e.turbo_app_header]=e.site_id,superagent.put(e.base_url+"/api/"+u+"/"+t.id).send(t).set(s).end(function(e,r){if(e)return void n(e);if("fail"==r.body.confirmation)return void n(new Error(r.body.message));var t=r.body.result||r.body.results;o(t)})})},remove:function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.delete(e.base_url+"/api/"+n+"/"+t.id).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})},updateEntity:n,removeEntity:u}};module.exports=TurboDatastore;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),TurboDatastore=function(e){var r=e,t=function(t,i){return null==i&&(i={}),i.site=r.site_id,new Promise(function(r,o){if(null==i.site)return void o(new Error("Please Set Your TURBO_APP_ID"));if(0==i.site.length)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=t.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.get(e.base_url+"/api/"+n).query(i).set(u).end(function(e,t){if(e)return void o(e);if("fail"==t.body.confirmation)return void o(new Error(t.body.message));var i=t.body.results;r(i)})})},i=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n={Accept:"application/json"};n[e.turbo_app_header]=e.site_id;var u=r.toLowerCase().trim();superagent.get(e.base_url+"/api/"+u+"/"+t).query(null).set(n).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result;i(t)})})},o=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));if(null==t)return void o(new Error("Post parameters required."));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,t.site=e.site_id,superagent.post(e.base_url+"/api/"+n).send(t).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})},n=function(r,t,i){return new Promise(function(o,n){if(null==e.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==i)return void n(new Error("Updated parameters required."));var u=r.toLowerCase().trim(),s={Accept:"application/json"};s[e.turbo_app_header]=e.site_id,superagent.put(e.base_url+"/api/"+u+"/"+t).send(i).set(s).end(function(e,r){if(e)return void n(e);if("fail"==r.body.confirmation)return void n(new Error(r.body.message));var t=r.body.result||r.body.results;o(t)})})},u=function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.delete(e.base_url+"/api/"+n+"/"+t).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})};return{fetch:t,fetchOne:i,create:o,update:function(r,t,i){return new Promise(function(o,n){if(null==e.site_id)return void n(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void n(new Error("Please Set Your TURBO_APP_ID"));if(null==i)return void n(new Error("Post parameters required."));Object.keys(i).forEach(function(e,r){var o=i[e];t[e]=o});var u=r.toLowerCase().trim(),s={Accept:"application/json"};s[e.turbo_app_header]=e.site_id,superagent.put(e.base_url+"/api/"+u+"/"+t.id).send(t).set(s).end(function(e,r){if(e)return void n(e);if("fail"==r.body.confirmation)return void n(new Error(r.body.message));var t=r.body.result||r.body.results;o(t)})})},remove:function(r,t){return new Promise(function(i,o){if(null==e.site_id)return void o(new Error("Please Set Your TURBO_APP_ID"));if(e.site_id.length<20)return void o(new Error("Please Set Your TURBO_APP_ID"));var n=r.toLowerCase().trim(),u={Accept:"application/json"};u[e.turbo_app_header]=e.site_id,superagent.delete(e.base_url+"/api/"+n+"/"+t.id).set(u).end(function(e,r){if(e)return void o(e);if("fail"==r.body.confirmation)return void o(new Error(r.body.message));var t=r.body.result||r.body.results;i(t)})})},updateEntity:n,removeEntity:u}};module.exports=TurboDatastore;
 
 /***/ }),
 /* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),TurboEmail=function(e){var r=e;return{sendEmail:function(i){return new Promise(function(n,o){return null==e.site_id?void o(new Error("Please Set Your TURBO_APP_ID")):e.site_id.length<20?void o(new Error("Please Set Your TURBO_APP_ID")):null==i?void o(new Error("Post parameters required.")):(i.site=e.site_id,i.exec="sendemail",void superagent.post(r.base_url+"/functions").send(i).set("Accept","application/json").end(function(e,r){return e?void o(e):"fail"==r.body.confirmation?void o(new Error(r.body.message)):void n(r.body.result)}))})}}};module.exports=TurboEmail;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),TurboEmail=function(e){var r=e;return{sendEmail:function(i){return new Promise(function(n,o){return null==e.site_id?void o(new Error("Please Set Your TURBO_APP_ID")):e.site_id.length<20?void o(new Error("Please Set Your TURBO_APP_ID")):null==i?void o(new Error("Post parameters required.")):(i.site=e.site_id,i.exec="sendemail",void superagent.post(r.base_url+"/functions").send(i).set("Accept","application/json").end(function(e,r){return e?void o(e):"fail"==r.body.confirmation?void o(new Error(r.body.message)):void n(r.body.result)}))})}}};module.exports=TurboEmail;
 
 /***/ }),
 /* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var Promise=__webpack_require__(9),superagent=__webpack_require__(8),TURBO_VECTOR_API_KEY_HEADER="Turbo-Vector-API-Key",parsePayload=function(e){try{return JSON.parse(e)}catch(r){return e}},Vector=function(e){return{runVector:function(e){return new Promise(function(r,t){if(null==e.app)return void t(new Error("Please specify vector host app - {name: APP}"));if(e.app.length<6)return void t(new Error("Please specify vector host app - {name: APP}"));if(null==e.name)return void t(new Error("Please specify vector name - {name: VECTOR_NAME}"));if(0==e.name.length)return void t(new Error("Please specify vector name - {name: VECTOR_NAME}"));var o=e.query||{},n=e.method||"get",a={method:n.toUpperCase()};null!=e.key&&(a["Turbo-Vector-API-Key"]=e.key);var u="https://production.turbo360-vector.com/"+e.app+"/"+e.name;if("get"==n.toLowerCase())return void superagent.get(u).query(o).set(a).end(function(e,o){if(e){var n=o.text||o.body;return null==n?void t(e):void r(parsePayload(n))}var a=o.status;if(a<200||a>299){var n=o.text||o.body;return null==n?void t(new Error(JSON.stringify(o))):void r(parsePayload(n))}var n=o.text||o.body;r(parsePayload(n))});n.toLowerCase(),n.toLowerCase(),n.toLowerCase()})}}};module.exports=Vector;
+var Promise=__webpack_require__(10),superagent=__webpack_require__(9),TURBO_VECTOR_API_KEY_HEADER="Turbo-Vector-API-Key",parsePayload=function(e){try{return JSON.parse(e)}catch(r){return e}},Vector=function(e){return{runVector:function(e){return new Promise(function(r,t){if(null==e.app)return void t(new Error("Please specify vector host app - {name: APP}"));if(e.app.length<6)return void t(new Error("Please specify vector host app - {name: APP}"));if(null==e.name)return void t(new Error("Please specify vector name - {name: VECTOR_NAME}"));if(0==e.name.length)return void t(new Error("Please specify vector name - {name: VECTOR_NAME}"));var o=e.query||{},n=e.method||"get",a={method:n.toUpperCase()};null!=e.key&&(a["Turbo-Vector-API-Key"]=e.key);var u="https://production.turbo360-vector.com/"+e.app+"/"+e.name;if("get"==n.toLowerCase())return void superagent.get(u).query(o).set(a).end(function(e,o){if(e){var n=o.text||o.body;return null==n?void t(e):void r(parsePayload(n))}var a=o.status;if(a<200||a>299){var n=o.text||o.body;return null==n?void t(new Error(JSON.stringify(o))):void r(parsePayload(n))}var n=o.text||o.body;r(parsePayload(n))});n.toLowerCase(),n.toLowerCase(),n.toLowerCase()})}}};module.exports=Vector;
 
 /***/ }),
 /* 157 */
@@ -35494,11 +35510,11 @@ var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35637,7 +35653,7 @@ var SignIn = function (_Component) {
                                                     },
                                                     _react2.default.createElement(
                                                         'b',
-                                                        { style: { color: 'white' } },
+                                                        { style: { color: 'white', padding: 5 } },
                                                         'Login'
                                                     )
                                                 ) : _react2.default.createElement(
@@ -35819,7 +35835,7 @@ exports.default = function (props) {
                                 _react2.default.createElement(
                                     "span",
                                     { className: "type--fine-print" },
-                                    "help@stack.io"
+                                    "help@indieriot.io"
                                 )
                             )
                         )
@@ -35879,7 +35895,7 @@ exports.default = function (props) {
                     _react2.default.createElement(
                         "p",
                         { className: "type--fine-print" },
-                        "Supercharge your web workflow"
+                        "Supercharge your life."
                     )
                 ),
                 _react2.default.createElement(
@@ -36186,6 +36202,204 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+    var month = new Date(props.item.timestamp).getMonth() + 1;
+    var day = new Date(props.item.timestamp).getDate();
+    var year = new Date(props.item.timestamp).getFullYear();
+    return _react2.default.createElement(
+        "div",
+        { className: "masonry__item col-md-4 col-sm-6 filter-marketing",
+            "data-masonry-filter": "Marketing", style: { boxShadow: '10px 10px 5px grey' }
+        },
+        _react2.default.createElement(
+            "article",
+            { className: "feature feature-1" },
+            _react2.default.createElement(
+                "a",
+                { href: "#", className: "block" },
+                _react2.default.createElement("img", { alt: "Image", src: props.item.concerts[0].picture })
+            ),
+            _react2.default.createElement(
+                "div",
+                { className: "feature__body boxed boxed--border" },
+                _react2.default.createElement(
+                    "h5",
+                    null,
+                    props.item.length > 1 ? props.item.concerts[0].concertName + " plus other concerts" : props.item.concerts[0].concertName + " ticket(s)"
+                ),
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    "Date: ",
+                    day + "/" + month + "/" + year
+                ),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement(
+                    "span",
+                    null,
+                    "Total Cost: ",
+                    props.item.total
+                ),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement(
+                    "button",
+                    { style: { padding: 5 }, className: "btn btn-default", onClick: props.showModal },
+                    "More Info"
+                )
+            )
+        )
+    );
+};
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (props) {
+    var month = new Date(props.purchaseModalTemp.timestamp).getMonth() + 1;
+    var day = new Date(props.purchaseModalTemp.timestamp).getDate();
+    var year = new Date(props.purchaseModalTemp.timestamp).getFullYear();
+
+    return _react2.default.createElement(
+        "div",
+        { className: "modal-instance" },
+        _react2.default.createElement(
+            "div",
+            { className: "modal-container modal-active" },
+            _react2.default.createElement(
+                "div",
+                { className: "modal-content" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "boxed boxed--lg" },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "btn  btn--lg pull-right ",
+                            onClick: props.turnOffModal
+                        },
+                        "X"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        null,
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "Concerts Bought:"
+                        ),
+                        _react2.default.createElement("hr", null),
+                        _react2.default.createElement(
+                            "table",
+                            { className: "border--round table--alternate-row" },
+                            _react2.default.createElement(
+                                "thead",
+                                null,
+                                _react2.default.createElement(
+                                    "tr",
+                                    null,
+                                    _react2.default.createElement(
+                                        "th",
+                                        null,
+                                        "Concert Name:"
+                                    ),
+                                    _react2.default.createElement(
+                                        "th",
+                                        null,
+                                        "Qty:"
+                                    ),
+                                    _react2.default.createElement(
+                                        "th",
+                                        null,
+                                        "Cost:"
+                                    ),
+                                    _react2.default.createElement(
+                                        "th",
+                                        null,
+                                        "Total:"
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "tbody",
+                                null,
+                                props.purchaseModalTemp.concerts.map(function (p, i) {
+                                    return _react2.default.createElement(
+                                        "tr",
+                                        { key: i },
+                                        _react2.default.createElement(
+                                            "td",
+                                            null,
+                                            p.concertName
+                                        ),
+                                        _react2.default.createElement(
+                                            "td",
+                                            null,
+                                            p.qty
+                                        ),
+                                        _react2.default.createElement(
+                                            "td",
+                                            null,
+                                            p.price
+                                        ),
+                                        _react2.default.createElement(
+                                            "td",
+                                            null,
+                                            p.qty * parseInt(p.price)
+                                        )
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "Total Of Purchase: ",
+                            props.purchaseModalTemp.total
+                        ),
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "Date:",
+                            month + "/" + day + "/" + year
+                        )
+                    )
+                )
+            )
+        )
+    );
+};
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -36200,13 +36414,13 @@ var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
-var _uuid = __webpack_require__(168);
+var _uuid = __webpack_require__(170);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36446,11 +36660,11 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(SignUp);
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var v1 = __webpack_require__(169);
-var v4 = __webpack_require__(170);
+var v1 = __webpack_require__(171);
+var v4 = __webpack_require__(172);
 
 var uuid = v4;
 uuid.v1 = v1;
@@ -36460,7 +36674,7 @@ module.exports = uuid;
 
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(68);
@@ -36566,7 +36780,7 @@ module.exports = v1;
 
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var rng = __webpack_require__(68);
@@ -36601,7 +36815,7 @@ module.exports = v4;
 
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36623,7 +36837,7 @@ var _Nav2 = _interopRequireDefault(_Nav);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
@@ -36743,7 +36957,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(RecoverAccount);
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36763,11 +36977,11 @@ var _Nav = __webpack_require__(17);
 
 var _Nav2 = _interopRequireDefault(_Nav);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
@@ -36984,7 +37198,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(SalesColumns);
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37002,11 +37216,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37447,7 +37661,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(AboutPage);
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37463,13 +37677,13 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 var _reactRouterDom = __webpack_require__(11);
 
@@ -38204,7 +38418,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(UserAccountSettings);
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38222,15 +38436,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 var _utils = __webpack_require__(65);
 
-var _reactDropzone = __webpack_require__(176);
+var _reactDropzone = __webpack_require__(178);
 
 var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
@@ -38487,7 +38701,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(CreateNewConcert);
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38496,8 +38710,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_styles__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_styles__ = __webpack_require__(181);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -39111,7 +39325,7 @@ Dropzone.defaultProps = {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39121,7 +39335,7 @@ Dropzone.defaultProps = {
 /* harmony export (immutable) */ __webpack_exports__["c"] = fileMatchSize;
 /* harmony export (immutable) */ __webpack_exports__["a"] = allFilesAccepted;
 /* harmony export (immutable) */ __webpack_exports__["e"] = onDocumentDragOver;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_attr_accept__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_attr_accept__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_attr_accept___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_attr_accept__);
 
 
@@ -39167,13 +39381,13 @@ function onDocumentDragOver(evt) {
 }
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports) {
 
 module.exports=function(t){function n(e){if(r[e])return r[e].exports;var o=r[e]={exports:{},id:e,loaded:!1};return t[e].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var r={};return n.m=t,n.c=r,n.p="",n(0)}([function(t,n,r){"use strict";n.__esModule=!0,r(8),r(9),n["default"]=function(t,n){if(t&&n){var r=function(){var r=Array.isArray(n)?n:n.split(","),e=t.name||"",o=t.type||"",i=o.replace(/\/.*$/,"");return{v:r.some(function(t){var n=t.trim();return"."===n.charAt(0)?e.toLowerCase().endsWith(n.toLowerCase()):/\/\*$/.test(n)?i===n.replace(/\/.*$/,""):o===n})}}();if("object"==typeof r)return r.v}return!0},t.exports=n["default"]},function(t,n){var r=t.exports={version:"1.2.2"};"number"==typeof __e&&(__e=r)},function(t,n){var r=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=r)},function(t,n,r){var e=r(2),o=r(1),i=r(4),u=r(19),c="prototype",f=function(t,n){return function(){return t.apply(n,arguments)}},s=function(t,n,r){var a,p,l,y,d=t&s.G,h=t&s.P,v=d?e:t&s.S?e[n]||(e[n]={}):(e[n]||{})[c],x=d?o:o[n]||(o[n]={});d&&(r=n);for(a in r)p=!(t&s.F)&&v&&a in v,l=(p?v:r)[a],y=t&s.B&&p?f(l,e):h&&"function"==typeof l?f(Function.call,l):l,v&&!p&&u(v,a,l),x[a]!=l&&i(x,a,y),h&&((x[c]||(x[c]={}))[a]=l)};e.core=o,s.F=1,s.G=2,s.S=4,s.P=8,s.B=16,s.W=32,t.exports=s},function(t,n,r){var e=r(5),o=r(18);t.exports=r(22)?function(t,n,r){return e.setDesc(t,n,o(1,r))}:function(t,n,r){return t[n]=r,t}},function(t,n){var r=Object;t.exports={create:r.create,getProto:r.getPrototypeOf,isEnum:{}.propertyIsEnumerable,getDesc:r.getOwnPropertyDescriptor,setDesc:r.defineProperty,setDescs:r.defineProperties,getKeys:r.keys,getNames:r.getOwnPropertyNames,getSymbols:r.getOwnPropertySymbols,each:[].forEach}},function(t,n){var r=0,e=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++r+e).toString(36))}},function(t,n,r){var e=r(20)("wks"),o=r(2).Symbol;t.exports=function(t){return e[t]||(e[t]=o&&o[t]||(o||r(6))("Symbol."+t))}},function(t,n,r){r(26),t.exports=r(1).Array.some},function(t,n,r){r(25),t.exports=r(1).String.endsWith},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){var r={}.toString;t.exports=function(t){return r.call(t).slice(8,-1)}},function(t,n,r){var e=r(10);t.exports=function(t,n,r){if(e(t),void 0===n)return t;switch(r){case 1:return function(r){return t.call(n,r)};case 2:return function(r,e){return t.call(n,r,e)};case 3:return function(r,e,o){return t.call(n,r,e,o)}}return function(){return t.apply(n,arguments)}}},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n,r){t.exports=function(t){var n=/./;try{"/./"[t](n)}catch(e){try{return n[r(7)("match")]=!1,!"/./"[t](n)}catch(o){}}return!0}},function(t,n){t.exports=function(t){try{return!!t()}catch(n){return!0}}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n,r){var e=r(16),o=r(11),i=r(7)("match");t.exports=function(t){var n;return e(t)&&(void 0!==(n=t[i])?!!n:"RegExp"==o(t))}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n,r){var e=r(2),o=r(4),i=r(6)("src"),u="toString",c=Function[u],f=(""+c).split(u);r(1).inspectSource=function(t){return c.call(t)},(t.exports=function(t,n,r,u){"function"==typeof r&&(o(r,i,t[n]?""+t[n]:f.join(String(n))),"name"in r||(r.name=n)),t===e?t[n]=r:(u||delete t[n],o(t,n,r))})(Function.prototype,u,function(){return"function"==typeof this&&this[i]||c.call(this)})},function(t,n,r){var e=r(2),o="__core-js_shared__",i=e[o]||(e[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n,r){var e=r(17),o=r(13);t.exports=function(t,n,r){if(e(n))throw TypeError("String#"+r+" doesn't accept regex!");return String(o(t))}},function(t,n,r){t.exports=!r(15)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n){var r=Math.ceil,e=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?e:r)(t)}},function(t,n,r){var e=r(23),o=Math.min;t.exports=function(t){return t>0?o(e(t),9007199254740991):0}},function(t,n,r){"use strict";var e=r(3),o=r(24),i=r(21),u="endsWith",c=""[u];e(e.P+e.F*r(14)(u),"String",{endsWith:function(t){var n=i(this,t,u),r=arguments,e=r.length>1?r[1]:void 0,f=o(n.length),s=void 0===e?f:Math.min(o(e),f),a=String(t);return c?c.call(n,a,s):n.slice(s-a.length,s)===a}})},function(t,n,r){var e=r(5),o=r(3),i=r(1).Array||Array,u={},c=function(t,n){e.each.call(t.split(","),function(t){void 0==n&&t in i?u[t]=i[t]:t in[]&&(u[t]=r(12)(Function.call,[][t],n))})};c("pop,reverse,shift,keys,values,entries",1),c("indexOf,every,some,forEach,map,filter,find,findIndex,includes",3),c("join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill"),o(o.S,"Array",u)}]);
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39202,7 +39416,7 @@ module.exports=function(t){function n(e){if(r[e])return r[e].exports;var o=r[e]=
 });
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39220,11 +39434,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 var _reactRouterDom = __webpack_require__(11);
 
@@ -39492,7 +39706,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Cart);
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39512,19 +39726,19 @@ var _reactRouterDom = __webpack_require__(11);
 
 var _reactRedux = __webpack_require__(4);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 var _reactStripeElements = __webpack_require__(34);
 
-var _CheckOutFormStripe = __webpack_require__(187);
+var _CheckOutFormStripe = __webpack_require__(189);
 
 var _CheckOutFormStripe2 = _interopRequireDefault(_CheckOutFormStripe);
 
-var _axios = __webpack_require__(188);
+var _axios = __webpack_require__(190);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
@@ -39714,7 +39928,7 @@ var dispatchToProps = function dispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(Checkout);
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39819,7 +40033,7 @@ Provider.defaultProps = {
 exports.default = Provider;
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39994,7 +40208,7 @@ var inject = function inject(WrappedComponent) {
 exports.default = inject;
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40104,7 +40318,7 @@ Elements.defaultProps = {
 exports.default = Elements;
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40255,7 +40469,7 @@ var Element = function Element(type) {
 exports.default = Element;
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40406,7 +40620,7 @@ PaymentRequestButtonElement.contextTypes = {
 exports.default = PaymentRequestButtonElement;
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40500,21 +40714,21 @@ var CheckOutFormStripe = function (_Component) {
 exports.default = (0, _reactStripeElements.injectStripe)(CheckOutFormStripe);
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(189);
+module.exports = __webpack_require__(191);
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 var bind = __webpack_require__(71);
-var Axios = __webpack_require__(191);
+var Axios = __webpack_require__(193);
 var defaults = __webpack_require__(35);
 
 /**
@@ -40549,14 +40763,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(75);
-axios.CancelToken = __webpack_require__(205);
+axios.CancelToken = __webpack_require__(207);
 axios.isCancel = __webpack_require__(74);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(206);
+axios.spread = __webpack_require__(208);
 
 module.exports = axios;
 
@@ -40565,7 +40779,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports) {
 
 /*!
@@ -40592,16 +40806,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var defaults = __webpack_require__(35);
-var utils = __webpack_require__(6);
-var InterceptorManager = __webpack_require__(200);
-var dispatchRequest = __webpack_require__(201);
+var utils = __webpack_require__(7);
+var InterceptorManager = __webpack_require__(202);
+var dispatchRequest = __webpack_require__(203);
 
 /**
  * Create a new instance of Axios
@@ -40678,13 +40892,13 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -40697,7 +40911,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40730,7 +40944,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40758,13 +40972,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -40833,13 +41047,13 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -40893,13 +41107,13 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -40968,7 +41182,7 @@ module.exports = (
 
 
 /***/ }),
-/* 198 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41011,13 +41225,13 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 199 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -41071,13 +41285,13 @@ module.exports = (
 
 
 /***/ }),
-/* 200 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -41130,18 +41344,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
-var transformData = __webpack_require__(202);
+var utils = __webpack_require__(7);
+var transformData = __webpack_require__(204);
 var isCancel = __webpack_require__(74);
 var defaults = __webpack_require__(35);
-var isAbsoluteURL = __webpack_require__(203);
-var combineURLs = __webpack_require__(204);
+var isAbsoluteURL = __webpack_require__(205);
+var combineURLs = __webpack_require__(206);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -41223,13 +41437,13 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(6);
+var utils = __webpack_require__(7);
 
 /**
  * Transform the data for a request or a response
@@ -41250,7 +41464,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 203 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41271,7 +41485,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 204 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41292,7 +41506,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 205 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41356,7 +41570,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 206 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41390,7 +41604,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 207 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41406,6 +41620,14 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(4);
+
+var _actions = __webpack_require__(6);
+
+var _actions2 = _interopRequireDefault(_actions);
+
+var _presentation = __webpack_require__(8);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41417,19 +41639,111 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ConcertTicketsBought = function (_Component) {
     _inherits(ConcertTicketsBought, _Component);
 
-    function ConcertTicketsBought() {
+    function ConcertTicketsBought(props) {
         _classCallCheck(this, ConcertTicketsBought);
 
-        return _possibleConstructorReturn(this, (ConcertTicketsBought.__proto__ || Object.getPrototypeOf(ConcertTicketsBought)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (ConcertTicketsBought.__proto__ || Object.getPrototypeOf(ConcertTicketsBought)).call(this, props));
+
+        _this.state = {
+            purchasedCarts: null, message: '', err: false, modalOn: false, purchaseModalTemp: null
+        };
+        return _this;
     }
 
     _createClass(ConcertTicketsBought, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            this.props.getMyPurchasedCarts({ user_id: this.props.user.id }).then(function (data) {
+                _this2.setState({ purchasedCarts: data });
+                return;
+            }).catch(function (err) {
+                _this2.setState({ err: true, message: err.message });
+                return;
+            });
+        }
+    }, {
+        key: 'closeAlert',
+        value: function closeAlert() {
+            this.setState({ err: false, message: '' });
+        }
+    }, {
+        key: 'showModal',
+        value: function showModal(p) {
+            this.setState({ modalOn: true, purchaseModalTemp: p });
+        }
+    }, {
+        key: 'turnOffModal',
+        value: function turnOffModal() {
+            this.setState({ modalOn: false, purchaseModalTemp: null });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
+            var carts = this.state.purchasedCarts || [];
             return _react2.default.createElement(
-                'h1',
+                'div',
                 null,
-                'hi'
+                _react2.default.createElement('div', { style: { height: '60px' } }),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'main-container' },
+                    _react2.default.createElement(
+                        'section',
+                        { className: 'space--sm' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'container' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-12' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'masonry' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'row' },
+                                            _react2.default.createElement(
+                                                'h1',
+                                                null,
+                                                'Tickets I Bought:'
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'masonry__container masonry--active', style: { position: 'relative' } },
+                                                this.state.err ? _react2.default.createElement(_presentation.WarningAlert, { close: this.closeAlert.bind(this),
+                                                    errMessage: this.state.message }) : null,
+                                                _react2.default.createElement('div', { className: 'masonry__item col-md-4 col-sm-6' }),
+                                                carts.map(function (p, i) {
+                                                    return _react2.default.createElement(_presentation.PurchasedItems, { key: i,
+                                                        showModal: _this3.showModal.bind(_this3, p),
+                                                        item: p
+                                                    });
+                                                })
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    this.state.modalOn ? _react2.default.createElement(_presentation.PurchasedModal, {
+                        purchaseModalTemp: this.state.purchaseModalTemp,
+                        turnOffModal: this.turnOffModal.bind(this)
+                    }) : null,
+                    _react2.default.createElement(_presentation.Footer, null)
+                ),
+                _react2.default.createElement(
+                    'a',
+                    { className: 'back-to-top inner-link', href: '#start', 'data-scroll-class': '100vh:active' },
+                    _react2.default.createElement('i', { className: 'stack-interface stack-up-open-big' })
+                )
             );
         }
     }]);
@@ -41437,10 +41751,26 @@ var ConcertTicketsBought = function (_Component) {
     return ConcertTicketsBought;
 }(_react.Component);
 
-exports.default = ConcertTicketsBought;
+var stateToProps = function stateToProps(state) {
+    var user = state.user;
+
+    return {
+        user: user
+    };
+};
+
+var dispatchToProps = function dispatchToProps(dispatch) {
+    return {
+        getMyPurchasedCarts: function getMyPurchasedCarts(params) {
+            return dispatch(_actions2.default.getMyPurchasedCarts(params));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(stateToProps, dispatchToProps)(ConcertTicketsBought);
 
 /***/ }),
-/* 208 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41460,13 +41790,13 @@ var _containers = __webpack_require__(52);
 
 var _reactRedux = __webpack_require__(4);
 
-var _actions = __webpack_require__(7);
+var _actions = __webpack_require__(6);
 
 var _actions2 = _interopRequireDefault(_actions);
 
 var _reactRouterDom = __webpack_require__(11);
 
-var _presentation = __webpack_require__(10);
+var _presentation = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

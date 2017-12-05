@@ -6,9 +6,11 @@ import SuccessAlert       from './SuccessAlert'
 import Error404           from './Error404'
 import CartItem           from './CartItem'
 import CheckoutItem       from './CheckoutItem'
-
+import PurchasedItems     from './PurchasedItems'
+import PurchasedModal     from './PurchasedModal'
 
 
 export{
-    Item, Footer, WarningAlert, SuccessAlert, Error404, CartItem, CheckoutItem
+    Item, Footer, WarningAlert, SuccessAlert, Error404, CartItem, CheckoutItem, PurchasedItems,
+    PurchasedModal
 }

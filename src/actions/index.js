@@ -105,6 +105,12 @@ export default {
 		return dispatch => {
 			return dispatch( { type: constants.NEW_CART_AFTER_PURCHASED , data: null } )
 		}
+	},
+
+	getMyPurchasedCarts: params => {
+		return dispatch => {
+			return dispatch( TurboClient.getRequest( 'purchased_carts',params, null ))
+		}
 	}
 	
 } 
