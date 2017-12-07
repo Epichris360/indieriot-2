@@ -9,24 +9,26 @@ class MyConcerts extends Component{
     constructor(props){
         super(props)
         this.state = {
-            err: false, message: '', myconcerts:[]
+            err: false, message: null, concerts:null
         }
     }
     componentDidMount(){
         this.props.getMyConcerts( { user_id: this.props.user.id } )
         .then(data => {
-            console.log('data: ',data)
-            this.setState({ myconcerts: [...data] })
+            this.setState({ concerts:data })
             return
         })
         .catch(err => {
-            console.log('err: ', err.message )
+            this.setState({ err: true, message: err.message })
             return
-        })
+        }).bind(this)
     }
+    closeAlert(){
+        this.setState({ err: false, message:'' })
+    } 
     render(){
         console.log('user from props', this.props.user)
-        const myConcerts = this.state.myconcerts
+        const concerts = this.state.concerts || []
         return(
             <div>
                 <div style={{ height:'60px' }}></div>
@@ -50,9 +52,9 @@ class MyConcerts extends Component{
 
                                                 {/*start of item*/} 
                                                 {
-                                                    myConcerts.map( (con,i) => {
+                                                    concerts.map( (con,i) => {
                                                         return(
-                                                            <MyConcerts con={con} key={i} />
+                                                            <MyConcertsItem con={con} key={i} />
                                                         )
                                                     })
                                                 }

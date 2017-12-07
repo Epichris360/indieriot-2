@@ -28,7 +28,7 @@ class ConcertTicketsBought extends Component{
     showModal(p){
         this.setState({ modalOn: true, purchaseModalTemp: p})
         
-    }
+    } 
     turnOffModal(){
         this.setState({ modalOn: false, purchaseModalTemp: null })
     }

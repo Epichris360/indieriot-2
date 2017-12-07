@@ -41589,8 +41589,6 @@ var _actions2 = _interopRequireDefault(_actions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -41607,7 +41605,7 @@ var MyConcerts = function (_Component) {
         var _this = _possibleConstructorReturn(this, (MyConcerts.__proto__ || Object.getPrototypeOf(MyConcerts)).call(this, props));
 
         _this.state = {
-            err: false, message: '', myconcerts: []
+            err: false, message: null, concerts: null
         };
         return _this;
     }
@@ -41618,19 +41616,23 @@ var MyConcerts = function (_Component) {
             var _this2 = this;
 
             this.props.getMyConcerts({ user_id: this.props.user.id }).then(function (data) {
-                console.log('data: ', data);
-                _this2.setState({ myconcerts: [].concat(_toConsumableArray(data)) });
+                _this2.setState({ concerts: data });
                 return;
             }).catch(function (err) {
-                console.log('err: ', err.message);
+                _this2.setState({ err: true, message: err.message });
                 return;
-            });
+            }).bind(this);
+        }
+    }, {
+        key: 'closeAlert',
+        value: function closeAlert() {
+            this.setState({ err: false, message: '' });
         }
     }, {
         key: 'render',
         value: function render() {
             console.log('user from props', this.props.user);
-            var myConcerts = this.state.myconcerts;
+            var concerts = this.state.concerts || [];
             return _react2.default.createElement(
                 'div',
                 null,
@@ -41668,8 +41670,8 @@ var MyConcerts = function (_Component) {
                                                 this.state.err ? _react2.default.createElement(_presentation.WarningAlert, { close: this.closeAlert.bind(this),
                                                     errMessage: this.state.message }) : null,
                                                 _react2.default.createElement('div', { className: 'masonry__item col-md-4 col-sm-6' }),
-                                                myConcerts.map(function (con, i) {
-                                                    return _react2.default.createElement(MyConcerts, { con: con, key: i });
+                                                concerts.map(function (con, i) {
+                                                    return _react2.default.createElement(_presentation.MyConcertsItem, { con: con, key: i });
                                                 })
                                             )
                                         )

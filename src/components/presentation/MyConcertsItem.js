@@ -14,7 +14,7 @@ export default props => {
                         More Info
                     </button> 
                 </div>
-            </article> 
+            </article>  
         </div>
     )
 }
