@@ -57,7 +57,7 @@ class CreateNewConcert extends Component{
     closeAlert(){
         this.setState({err: false, success:false, errMessage:'' })
     }
-    render(){
+    render(){ 
         return(
             <div className="main-container">
                 <div style={{ height:50 }} />
@@ -78,7 +78,7 @@ class CreateNewConcert extends Component{
                                                 close={this.closeAlert.bind(this)} 
                                                 msg={this.state.errMessage} /> : null
                                         }
-                                        <h4>Profile</h4>
+                                        <h4>Concert!:</h4>
                                         <form onSubmit={e => e.preventDefault() } >
                                             <div className="row">
                                                 <div className="col-sm-6">

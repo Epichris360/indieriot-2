@@ -9,12 +9,13 @@ export default props => {
                 <a href="#" className="block">
                     <img alt="Image" src={ props.con.picture } />
                 </a>
+                <span>{ props.con.concertName }</span>
                 <div className="feature__body boxed boxed--border">
-                    <button style={{padding:5}} className="btn btn-default"  >
+                    <button style={{padding:5}} className="btn btn-default" onClick={ props.pick } >
                         More Info
                     </button> 
                 </div>
             </article>  
-        </div>
+        </div> 
     )
-}
+} 

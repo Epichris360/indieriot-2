@@ -17,10 +17,11 @@ import Cart 			   		from './Cart'
 import Checkout			   		from './Checkout'
 import ConcertTicketsBought 	from './ConcertTicketsBought'
 import MyConcerts				from './MyConcerts'
+import ConcertEditModal			from './ConcertEditModal'
 
 export {
 
 	Nav, SignIn, SignUp, RecoverAccount, SalesColumns, AboutPage, UserAccountSettings, CreateNewConcert,
-	Cart, Checkout, ConcertTicketsBought, MyConcerts
+	Cart, Checkout, ConcertTicketsBought, MyConcerts, ConcertEditModal
 	
 }

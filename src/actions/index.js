@@ -117,6 +117,12 @@ export default {
 		return dispatch => {
 			return dispatch( TurboClient.getRequest( 'concerts', params, null ) )
 		}
+	},
+
+	updateMyConcert: (id, params) => {
+		return dispatch => {
+			return dispatch( TurboClient.putWithIdRequest( 'concerts', id, params, null ) )
+		}
 	}
 	
 } 

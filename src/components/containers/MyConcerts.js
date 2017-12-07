@@ -1,6 +1,7 @@
 import React, { Component }         from 'react'
-import { WarningAlert, Footer, MyConcertsItem 
+import { WarningAlert, Footer, MyConcertsItem, 
                                   } from '../presentation'
+import ConcertEditModal             from './ConcertEditModal'
 import { connect }                  from 'react-redux'
 import actions                      from '../../actions'
 
@@ -9,7 +10,7 @@ class MyConcerts extends Component{
     constructor(props){
         super(props)
         this.state = {
-            err: false, message: null, concerts:null
+            err: false, message: null, concerts:null, pickedConcert:null, showModal:false
         }
     }
     componentDidMount(){
@@ -23,11 +24,23 @@ class MyConcerts extends Component{
             return
         }).bind(this)
     }
+    updateConcert(concert){
+        let concerts = this.state.concerts
+        const index = concerts.map( c => c.id ).indexOf( concert.id )
+
+        concerts[index] = concert
+        this.setState({ concerts })
+    }
     closeAlert(){
         this.setState({ err: false, message:'' })
-    } 
+    }
+    pickConcert(con){
+        this.setState({ pickedConcert: con, showModal: true })
+    }
+    exitModal(){
+        this.setState({ showModal: false, pickConcert:null })
+    }
     render(){
-        console.log('user from props', this.props.user)
         const concerts = this.state.concerts || []
         return(
             <div>
@@ -54,7 +67,9 @@ class MyConcerts extends Component{
                                                 {
                                                     concerts.map( (con,i) => {
                                                         return(
-                                                            <MyConcertsItem con={con} key={i} />
+                                                            <MyConcertsItem pick={ this.pickConcert.bind(this, con) }
+                                                                con={con} key={i} 
+                                                            />
                                                         )
                                                     })
                                                 }
@@ -71,6 +86,14 @@ class MyConcerts extends Component{
                         </div>
                         {/*<!--end of container-->*/}
                     </section>
+
+                    {
+                        this.state.showModal ? 
+                        <ConcertEditModal con={this.state.pickedConcert}
+                            updateConcert={ this.updateConcert.bind(this) }
+                            exit={this.exitModal.bind(this)}
+                        /> : null
+                    }
                     
                     <Footer />
                 </div>
