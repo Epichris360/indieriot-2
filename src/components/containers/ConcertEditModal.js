@@ -16,6 +16,7 @@ class ConcertEditModal extends Component{
         }
     }
     componentDidMount(){
+        this.props.notTransparent()
         const { concertName, price, description, picture } = this.props.con
         this.setState({ concert: this.props.con, concertName, price, description, picture })
     }
@@ -52,6 +53,15 @@ class ConcertEditModal extends Component{
         .then(data => {
             this.props.updateConcert(concert)
             this.setState({updating: false, err: false, success: true, message:'Updated!!!!' })
+            return
+        })
+        .then( () => {
+            this.props.getAllConcertsActive()
+            .then( () => {
+                this.props.notTransparent()
+                return
+            })
+            this.props.notTransparent()
             return
         })
         .catch(err => {
@@ -122,15 +132,16 @@ class ConcertEditModal extends Component{
                                         <img src={this.state.picture} border={1} />
                                     </div>
                                 </div>
+                                
                                 {
                                     this.state.updating ? <h1>Updating......</h1>   : 
                                     this.state.imageUploading ? <h1>Uploading Image...</h1> :
-                                    <div className="col-md-12">
+                                    <div className="col-md-12" style={{ marginTop: 10 }} >
 
                                         <Dropzone className="btn btn--primary type--uppercase pull-right" 
                                             onDrop={this.uploadImg.bind(this)}
                                         >
-                                            <strong style={{color:'white'}}>Select File</strong>
+                                            <strong style={{color:'white'}}>Select A Picture</strong>
                                         </Dropzone>        
                                         <div className="col-md-3 col-sm-4">
                                             <button className="btn btn--primary type--uppercase"
@@ -152,13 +163,14 @@ class ConcertEditModal extends Component{
 
 const stateToProps = state => {
     return{
-
     }
 }
 
 const dispatchToProps = dispatch => {
     return{
-        updateMyConcert: (id, params) => dispatch( actions.updateMyConcert(id, params) )
+        updateMyConcert: (id, params) => dispatch( actions.updateMyConcert(id, params) ), 
+        getAllConcertsActive: () => dispatch( actions.getAllConcertsActive() ),
+        notTransparent: () => dispatch( actions.navBarNotTransparent() )
     }
 }
 

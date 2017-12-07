@@ -12781,6 +12781,11 @@ var ConcertEditModal = function (_Component) {
                 _this3.props.updateConcert(concert);
                 _this3.setState({ updating: false, err: false, success: true, message: 'Updated!!!!' });
                 return;
+            }).then(function () {
+                _this3.props.getAllConcertsActive().then(function () {
+                    return;
+                });
+                return;
             }).catch(function (err) {
                 _this3.setState({ updating: false, err: true, success: false, message: err.message });
                 return;
@@ -12916,7 +12921,7 @@ var ConcertEditModal = function (_Component) {
                                     'Uploading Image...'
                                 ) : _react2.default.createElement(
                                     'div',
-                                    { className: 'col-md-12' },
+                                    { className: 'col-md-12', style: { marginTop: 10 } },
                                     _react2.default.createElement(
                                         _reactDropzone2.default,
                                         { className: 'btn btn--primary type--uppercase pull-right',
@@ -12925,7 +12930,7 @@ var ConcertEditModal = function (_Component) {
                                         _react2.default.createElement(
                                             'strong',
                                             { style: { color: 'white' } },
-                                            'Select File'
+                                            'Select A Picture'
                                         )
                                     ),
                                     _react2.default.createElement(
@@ -12959,6 +12964,9 @@ var dispatchToProps = function dispatchToProps(dispatch) {
     return {
         updateMyConcert: function updateMyConcert(id, params) {
             return dispatch(_actions2.default.updateMyConcert(id, params));
+        },
+        getAllConcertsActive: function getAllConcertsActive() {
+            return dispatch(_actions2.default.getAllConcertsActive());
         }
     };
 };
@@ -37374,14 +37382,10 @@ exports.default = function (props) {
         _react2.default.createElement(
             "article",
             { className: "feature feature-1" },
+            _react2.default.createElement("img", { alt: "Image", src: props.con.picture }),
             _react2.default.createElement(
-                "a",
-                { href: "#", className: "block" },
-                _react2.default.createElement("img", { alt: "Image", src: props.con.picture })
-            ),
-            _react2.default.createElement(
-                "span",
-                null,
+                "h1",
+                { className: "text-center" },
                 props.con.concertName
             ),
             _react2.default.createElement(
