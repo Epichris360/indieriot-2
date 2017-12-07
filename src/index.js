@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import store from './stores'
 import { Provider } from 'react-redux'
 import { SignIn, SignUp, RecoverAccount, SalesColumns, Nav, AboutPage, Checkout, ConcertTicketsBought,
+	MyConcerts,
 	UserAccountSettings, CreateNewConcert, Cart } from './components/containers'
 import { Error404 } from './components/presentation'
 import Home from './components/Home'
@@ -36,6 +37,7 @@ const app = (
 						<Route path="/cart"						component={Cart} 				 />
 						<Route path="/checkout"					component={Checkout} 			 />
 						<Route path="/tickets-bought" 			component={ConcertTicketsBought} />
+						<Route path="/my-concerts"				component={MyConcerts} 		     />
 						<Route path="/email-confirmation/:code"   />
 							{/* needs to be SSR'ed. Just use a regular mustache template */}
 						<Route 									component={Error404} />

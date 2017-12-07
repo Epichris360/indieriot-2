@@ -8,9 +8,10 @@ import CartItem           from './CartItem'
 import CheckoutItem       from './CheckoutItem'
 import PurchasedItems     from './PurchasedItems'
 import PurchasedModal     from './PurchasedModal'
+import MyConcertsItem     from './MyConcertsItem'
 
 
 export{
     Item, Footer, WarningAlert, SuccessAlert, Error404, CartItem, CheckoutItem, PurchasedItems,
-    PurchasedModal
+    PurchasedModal, MyConcertsItem
 }

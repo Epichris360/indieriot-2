@@ -111,6 +111,12 @@ export default {
 		return dispatch => {
 			return dispatch( TurboClient.getRequest( 'purchased_carts',params, null ))
 		}
+	},
+
+	getMyConcerts: params => {
+		return dispatch => {
+			return dispatch( TurboClient.getRequest( 'concerts', params, null ) )
+		}
 	}
 	
 } 

@@ -6,6 +6,8 @@ import actions              from '../../actions'
 import { WarningAlert }     from '../presentation'
 import { v4 }               from 'uuid'
 
+const defaultProfileImg = "https://lh3.googleusercontent.com/9I8wDIyovcWBjgpB9eT1rVtmZ78x0D12xRhk-K3QLUaoveCdl7edGT74vccpuYaYstyJ4oLiZQyYPipcTLZu73Rci_I"
+
 class SignUp extends Component{
     constructor(props){
         super(props)
@@ -27,7 +29,7 @@ class SignUp extends Component{
             return
         }
         this.setState({loading:true})
-        const newUser = { username, email, password, confirmationNum: v4() }
+        const newUser = { username, email, password, confirmationNum: v4(), profileImg:defaultProfileImg }
         this.props.registerUser(newUser)
         .then( data => {
             return

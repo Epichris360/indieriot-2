@@ -89,7 +89,7 @@ class Nav extends Component{
                                                                             </Link>
                                                                         </li>
                                                                         {
-                                                                            this.props.user.category == 'artist' ? 
+                                                                            this.props.user.category.toUpperCase() == 'ARTIST' ? 
                                                                                 
                                                                                 <li className="dropdown" >
                                                                                     <Link to="/create-concert" >
@@ -98,6 +98,12 @@ class Nav extends Component{
                                                                                         </span>
                                                                                     </Link>
                                                                                 </li> : null
+                                                                        }
+                                                                        {
+                                                                            this.props.user.category.toUpperCase() == 'ARTIST' ? 
+                                                                            <li className="dropdown" >
+                                                                                <Link to="/my-concerts" >My Concerts</Link>
+                                                                            </li> : null
                                                                         }
                                                                         <li className="dropdown">
                                                                             <span className="dropdown__trigger">About</span>

@@ -16,10 +16,11 @@ import CreateNewConcert	   		from './CreateNewConcert'
 import Cart 			   		from './Cart'
 import Checkout			   		from './Checkout'
 import ConcertTicketsBought 	from './ConcertTicketsBought'
+import MyConcerts				from './MyConcerts'
 
 export {
 
 	Nav, SignIn, SignUp, RecoverAccount, SalesColumns, AboutPage, UserAccountSettings, CreateNewConcert,
-	Cart, Checkout, ConcertTicketsBought
+	Cart, Checkout, ConcertTicketsBought, MyConcerts
 	
 }

@@ -19,7 +19,7 @@ export default props => {
                             `${props.item.concerts[0].concertName} ticket(s)`
                         }
                     </h5>
-                    <span>Date: { `${day}/${month}/${year}` }</span>
+                    <span>Bought on: { `${day}/${month}/${year}` }</span>
                     <br/>
                     <span>Total Cost: {props.item.total}</span>
                     <br/>

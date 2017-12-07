@@ -42,7 +42,6 @@ class CreateNewConcert extends Component{
     }
     uploadImg(files){
         const file = files[0]
-
         this.setState({imageUploading:true})
 		TurboClient.uploadFile(file)
 		.then(data => {
@@ -54,7 +53,6 @@ class CreateNewConcert extends Component{
             this.setState({ err:true, errMessage:err.message, imageUploading: false })
             return
         })
-        
     }
     closeAlert(){
         this.setState({err: false, success:false, errMessage:'' })
